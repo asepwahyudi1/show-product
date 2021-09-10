@@ -28,8 +28,46 @@
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
     </script>
+    <style>
+      body {
+        background-color: rgb(194, 194, 194);
+      }
+      header {
+        background-color: rgb(255, 144, 71);
+        border: solid;
+        border-color: black;
+      }
+      header img {  
+        margin-left: 50px;
+      }
+      header h1 {
+        float: right;
+        padding-right: 1010px;
+        padding-top: 10px;
+      }
+      footer {
+        padding-top: 10px;
+      }
+      footer .bodycenter  {
+        border: solid;
+        background-color: rgb(255, 255, 255);
+        margin-left: 60px;
+        margin-right: 60px;
+      }
+      .gambarproduk {
+        padding: 10px 10px 10px 10px;
+      }
+    </style>
   </head>
   <body>
-    <h1>Selamat Datang Di Aplikasi Show Product</h1>
+    <header>
+      <img src="Logo.png" width="100">
+        <h1>E-Commerce</h1>
+    </header>
+    <footer>
+      <div class="bodycenter">
+         <img class="gambarproduk" id="gambarproduk" width="350px">
+      </div>
+    </footer>
   </body>
 </html>
