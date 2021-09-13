@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>show-product</title>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -33,15 +34,13 @@
         background-color: rgb(194, 194, 194);
       }
       header {
-        background-color: rgb(255, 144, 71);
-        border: solid;
-        border-color: black;
+        background: linear-gradient(-180deg,#f53d2d,#f63);
+        width: auto;
+        height: 100px;
+        position: relative;
       }
-      header h1 {
-        text-decoration: none;
-        margin-left: 80px;
-        padding-right: 1000px;
-        padding-top: 8px;
+      header img {
+        margin: 10px 50px 10px 50px;
       }
       footer {
         padding-top: 10px;
@@ -49,23 +48,61 @@
       footer .bodycenter  {
         border: solid;
         background-color: rgb(255, 255, 255);
-        margin-left: 80px;
-        margin-right: 80px;
+        margin-left: 100px;
+        margin-right: 100px;
       }
       .gambarproduk {
-        padding: 10px 10px 10px 10px;
+        padding: 5px 5px 5px 5px;
+        float: left;
+      }
+      .NAMAPRODUK {
+        text-align: center;
+      }
+      .HARGABARANG {
+        color: orangered;
+        text-align: center;
+        margin-right: 400px;
+      }
+      .bintang {
+        color: gold;
+      }
+      .tempatpegiriman {
+
+      }
+      button {
+      }
+      .tombolbeli {
+        color: whitesmoke;
       }
     </style>
   </head>
   <body>
     <header>
-    <h1><img src="Logo.png" width="100"><p>E-Commerce</p></h1>
+    <img src="Logo.png" width="200">
     </header>
     <footer>
       <div class="bodycenter">
-         <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="500px">
+         <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="400px">
+        <h1 class="NAMAPRODUK">hello</h1>
+          <br>
+        <h1 class="HARGABARANG">1000000</h1>
+          <br>
+      <div class="bintang">
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
       </div>
-
+        <br>
+        <h3 class="tempatpegiriman">DARI KOTA:</h3>
+        <br>
+        <!-- <button onclick="" class="tombolbeli">Beli Sekarang</button> -->
+        <button type="button" class="btn btn-solid-primary btn--l _3Kiuzg" aria-disabled="false">beli sekarang</button>
+          <div class="descripsi">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde mollitia pariatur ea veniam impedit, ut repellendus, necessitatibus molestias minus aut nesciunt eveniet commodi perferendis sit odit optio error earum.</p>
+          </div>
+      </div>
     </footer>
   </body>
 </html>
