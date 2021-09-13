@@ -30,17 +30,11 @@
       const analytics = getAnalytics(app);
     </script>
     <style>
-      body {
-        background-color: rgb(194, 194, 194);
+      .fullborder {
+        border: solid;
       }
-      header {
+      .header {
         background: linear-gradient(-180deg,#f53d2d,#f63);
-        width: auto;
-        height: 100px;
-        position: relative;
-      }
-      header img {
-        margin: 10px 50px 10px 50px;
       }
       footer {
         padding-top: 10px;
@@ -76,10 +70,10 @@
       }
     </style>
   </head>
-  <body>
-    <header>
-    <img src="Logo.png" width="200">
-    </header>
+  <body class="fullborder">
+    <div class="header">
+      <img src="Logo.png" width="200px">
+    </div>
     <footer>
       <div class="bodycenter">
          <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="400px">
@@ -97,12 +91,11 @@
         <br>
         <h3 class="tempatpegiriman">DARI KOTA:</h3>
         <br>
-        <!-- <button onclick="" class="tombolbeli">Beli Sekarang</button> -->
         <button type="button" class="btn btn-solid-primary btn--l _3Kiuzg" aria-disabled="false">beli sekarang</button>
           <div class="descripsi">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde mollitia pariatur ea veniam impedit, ut repellendus, necessitatibus molestias minus aut nesciunt eveniet commodi perferendis sit odit optio error earum.</p>
           </div>
-      </div>
+        </div>
     </footer>
   </body>
 </html>
