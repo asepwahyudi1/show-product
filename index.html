@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>show-product</title>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+    <style>
+      .fullborder {
+        border: solid;
+      }
+      .header {
+        background: linear-gradient(-180deg,#f53d2d,#f63);
+      }
+      .header img {
+        padding-left: 50px;
+        padding-top: 15px;
+        padding-bottom: 15px;
+        padding-right: 50px;
+      }
+      footer {
+        padding-top: 10px;
+      }
+      footer .bodycenter  {
+        border: solid;
+        background-color: rgb(255, 255, 255);
+        margin-left: 100px;
+        margin-right: 100px;
+      }
+      .gambarproduk {
+        padding: 5px 5px 5px 5px;
+        float: left;
+      }
+      .NAMAPRODUK {
+        text-align: center;
+      }
+      .HARGABARANG {
+        color: orangered;
+        text-align: center;
+        margin-right: 400px;
+      }
+      .bintang {
+        color: gold;
+      }
+      .tempatpegiriman {
+
+      }
+      button {
+      }
+      .tombolbeli {
+        color: whitesmoke;
+      }
+    </style>
+  </head>
+  <body class="fullborder">
+    <div class="header">
+      <img src="Logo.png" width="200px">
+    </div>
+    <footer>
+      <div class="bodycenter">
+         <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="400px">
+        <h1 class="NAMAPRODUK">hello</h1>
+          <br>
+        <h1 class="HARGABARANG">1000000</h1>
+          <br>
+      <div class="bintang">
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+      </div>
+        <br>
+        <h3 class="tempatpegiriman">DARI KOTA:</h3>
+        <br>
+        <button type="button" class="btn btn-solid-primary btn--l _3Kiuzg" aria-disabled="false">beli sekarang</button>
+          <div class="descripsi">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde mollitia pariatur ea veniam impedit, ut repellendus, necessitatibus molestias minus aut nesciunt eveniet commodi perferendis sit odit optio error earum.</p>
+          </div>
+        </div>
+    </footer>
+  </body>
+</html>
