@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>show-product</title>
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+    <style>
+      body {
+        background-color: rgb(194, 194, 194);
+      }
+      header {
+        background-color: rgb(255, 144, 71);
+        border: solid;
+        border-color: black;
+      }
+      header h1 {
+        text-decoration: none;
+        margin-left: 80px;
+        padding-right: 1000px;
+        padding-top: 8px;
+      }
+      footer {
+        padding-top: 10px;
+      }
+      footer .bodycenter  {
+        border: solid;
+        background-color: rgb(255, 255, 255);
+        margin-left: 80px;
+        margin-right: 80px;
+      }
+      .gambarproduk {
+        padding: 10px 10px 10px 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+    <h1><img src="Logo.png" width="100"><p>E-Commerce</p></h1>
+    </header>
+    <footer>
+      <div class="bodycenter">
+         <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="500px">
+      </div>
+
+    </footer>
+  </body>
+</html>
