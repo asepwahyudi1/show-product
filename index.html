@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>show-product</title>
-    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.css">
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -30,49 +30,72 @@
       const analytics = getAnalytics(app);
     </script>
     <style>
-      body {
-        background-color: rgb(194, 194, 194);
-      }
-      header {
-        background-color: rgb(255, 144, 71);
+      .fullborder {
         border: solid;
-        border-color: black;
       }
-      header img {
-        margin-left: 50px;
-      }
-      header h3 {
-        float: right;
-        padding-right: 1010px;
-        padding-top: 10px;
-      }
-      header h3 i {
-        width: 100px;
+      .header {
+        background: linear-gradient(-180deg,#f53d2d,#f63);
       }
       footer {
         padding-top: 10px;
       }
-      footer .bodycenter {
+      footer .bodycenter  {
         border: solid;
         background-color: rgb(255, 255, 255);
-        margin-left: 60px;
-        margin-right: 60px;
+        margin-left: 100px;
+        margin-right: 100px;
       }
       .gambarproduk {
-        padding: 10px 10px 10px 10px;
+        padding: 5px 5px 5px 5px;
+        float: left;
+      }
+      .NAMAPRODUK {
+        text-align: center;
+      }
+      .HARGABARANG {
+        color: orangered;
+        text-align: center;
+        margin-right: 400px;
+      }
+      .bintang {
+        color: gold;
+      }
+      .tempatpegiriman {
+
+      }
+      button {
+      }
+      .tombolbeli {
+        color: whitesmoke;
       }
     </style>
   </head>
-  <body>
-    <header>
-      <!-- <img src="Logo.png" width="100" /> -->
-      <h3><i class="fas fa-shopping-cart"></i>E-COMMERCE</h3>
-      <!-- <h1>E-Commerce</h1> -->
-    </header>
+  <body class="fullborder">
+    <div class="header">
+      <img src="Logo.png" width="200px">
+    </div>
     <footer>
       <div class="bodycenter">
-        <img class="gambarproduk" id="gambarproduk" width="350px" />
+         <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="400px">
+        <h1 class="NAMAPRODUK">hello</h1>
+          <br>
+        <h1 class="HARGABARANG">1000000</h1>
+          <br>
+      <div class="bintang">
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
+        <h3 class="fas fa-star"></h3>
       </div>
+        <br>
+        <h3 class="tempatpegiriman">DARI KOTA:</h3>
+        <br>
+        <button type="button" class="btn btn-solid-primary btn--l _3Kiuzg" aria-disabled="false">beli sekarang</button>
+          <div class="descripsi">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis unde mollitia pariatur ea veniam impedit, ut repellendus, necessitatibus molestias minus aut nesciunt eveniet commodi perferendis sit odit optio error earum.</p>
+          </div>
+        </div>
     </footer>
   </body>
 </html>
