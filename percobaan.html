@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>show-product</title>
+    <link rel="stylesheet" href="fontawesome/css/all.css">
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+    </script>
+	<style>
+    body {
+        padding: 0;
+        margin: 0;
+    }
+    header {
+        background: linear-gradient(-180deg,#f53d2d,#f63);
+    }
+    header img {
+        padding-left: 50px;
+          padding-top: 15px;
+         padding-bottom: 15px;
+         padding-right: 50px;
+    }
+	section {
+		clear: both;			
+		padding: 40px;
+		border: 1px solid black;
+		display: inline-block;
+		width: 100%;
+		clear: both;
+		box-sizing: border-box;
+	}
+	footer {
+		float: left;
+	}
+	.div-1 {
+		width: 40%;
+		height: auto;
+		background: dodgerblue;
+	}
+	.div-2 {
+		width: 60%;
+		height: auto;
+		background: green;
+	}
+   .gambarproduk {
+       padding: 50px 50px 50px 50px;
+   }
+   .NAMAPRODUK {
+       border: solid;
+       padding: 15px;
+   }
+   .bintang {
+       color: gold;
+       padding: 10px;
+   }
+   .backgroundhargabarang {
+       background-color: rgba(245, 245, 245, 0.623)
+   }
+   .HARGABARANG {
+       color: tomato;
+       padding-left: 50px;
+       padding-top: 10px;
+       padding-bottom: 10px;
+   }
+	</style>
+</head>
+<body>
+    <header>
+      <img src="Logo.png" width="200px">
+    </header>
+	<section>		
+		<footer class="div-1">
+            <img class="gambarproduk" id="gambarproduk" src="1.jpg" width="400px">
+        </footer>
+		<footer class="div-2">
+            <h1 class="NAMAPRODUK">hello</h1>
+            <div class="bintang">
+                <h4 class="fas fa-star"></h4>
+                <h4 class="fas fa-star"></h4>
+                <h4 class="fas fa-star"></h4>
+                <h4 class="fas fa-star"></h4>
+                <h4 class="fas fa-star"></h4>
+              </div>
+            <div>
+                  <div class="backgroundhargabarang">
+                    <h1 class="HARGABARANG">Rp.......</h1>
+                </div>
+                <div>
+                    <h3 class="tempatpegiriman">DARI KOTA:</h3>
+                </div>
+            </div>
+        </footer>
+	</section>
+</body>
+</html>
