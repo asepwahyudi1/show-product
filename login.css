@@ -1,27 +1,27 @@
 @import "https://use.fontawesome.com/releases/v5.5.0/css/all.css";
-body{
+body {
   margin: 0;
   padding: 0;
   font-family: sans-serif;
   background: url(bg.jpg) no-repeat;
   background-size: cover;
 }
-.login-box{
+.login-box {
   width: 280px;
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   color: white;
 }
-.login-box h1{
+.login-box h1 {
   float: left;
   font-size: 40px;
   border-bottom: 6px solid #4caf50;
   margin-bottom: 50px;
   padding: 13px 0;
 }
-.textbox{
+.textbox {
   width: 100%;
   overflow: hidden;
   font-size: 20px;
@@ -29,12 +29,12 @@ body{
   margin: 8px 0;
   border-bottom: 1px solid #4caf50;
 }
-.textbox i{
+.textbox i {
   width: 26px;
   float: left;
   text-align: center;
 }
-.textbox input{
+.textbox input {
   border: none;
   outline: none;
   background: none;
@@ -44,7 +44,7 @@ body{
   float: left;
   margin: 0 10px;
 }
-.btn{
+.btn {
   width: 100%;
   background: none;
   border: 2px solid #4caf50;
