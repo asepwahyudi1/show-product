@@ -4,8 +4,14 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toko</title>
-    <!-- CSS only -->
+    <title>Admin</title>
+    <link rel="stylesheet" href="admin2.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+     <!-- CSS only -->
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,14 +19,57 @@
       crossorigin="anonymous"
     /></head
   ><!-- JavaScript Bundle with Popper -->
-  <script
+<script
     src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
     crossorigin="anonymous"
   ></script>
-  <body>
+  </head>
+  <body id="body-pd">
+    <header class="header" id="header">
+      <div class="header__toggle">
+        <i class="bx bx-menu" id="header-toggle"></i>
+      </div>
+     <h1 style="margin-right: 35%;">Pengaturan Toko</h1>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+        <div>
+          <a href="#" class="nav__logo">
+            <i class="bx bx-layer nav__logo-icon"></i>
+            <span class="nav__logo-name">Admin</span>
+          </a>
+
+          <div class="nav__list">
+            <a href="beranda.html" class="nav__link ">
+              <i class="fa fa-home nav__logo-icon"></i>
+              <span class="nav__name">Beranda</span>
+            </a>
+
+            <a href="product.html" class="nav__link ">
+              <i class="fa fa-cube nav__logo-icon"></i>
+              <span class="nav__name">Product</span>
+            </a>
+
+            <a href="toko.html" class="nav__link active">
+              <i class="fa fa-shopping-basket nav__logo-icon"></i>
+              <span class="nav__name">Toko</span>
+            </a>
+            <a href="index.html" class="nav__link">
+              <i class="bx bx-log-out nav__icon"></i>
+              <span class="nav__name">Keluar</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
     <div class="container">
-      <h1 style="text-align: center">Pengaturan Toko</h1>
       <br />
       <form class="form-horizontal">
         <div class="form-group">
@@ -40,11 +89,8 @@
           />
         </div>
       </form>
-      <a href="admin2.html"
-        ><button type="submit" class="btn btn-danger" onclick="myToko()">
-          Simpan
-        </button></a
-      >
+      <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
+       <a href="admin2.html"><button type="submit" class="btn btn-primary" onclick="myToko()">Simpan</button></a>
     </div>
 
     <script>
@@ -52,5 +98,9 @@
         confirm("Yeaayyy!!! Berhasil Merubah Data Toko.");
       }
     </script>
+
+    
+    <!--===== MAIN JS =====-->
+    <script src="main.js"></script>
   </body>
 </html>
