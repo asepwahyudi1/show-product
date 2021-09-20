@@ -49,7 +49,10 @@
         bintang += '<h6 class="fas fa-star"></h6>';
         }
         document.getElementById('rating').innerHTML = bintang;
-        document.getElementById('gambarproduk1').innerHTML = product.gambar;
+        document.getElementById('gambarproduk1').src = product.gambar[0];
+        document.getElementById('gambarproduk2').src = product.gambar[1];
+        document.getElementById('gambarproduk3').src = product.gambar[2];
+        document.getElementById('gambarproduk4').src = product.gambar[3];
       });
     </script>
     <link
@@ -108,7 +111,7 @@
 	}
    .gambarproduk {
        height: 300px;
-       width: 300px;
+       width: 400px;
    }
    .NAMAPRODUK {
        padding: 15px;
