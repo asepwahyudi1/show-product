@@ -7,6 +7,44 @@
     <title>Admin</title>
     <link rel="stylesheet" href="admin2.css" />
     <link rel="stylesheet" href="fontawesome/css/all.css" />
+    
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+      let url = 'https://d1csarkz8obe9u.cloudfront.net/posterpreviews/laptop-computer-repair-shop-logo-design-template-ff5d3e12e14519e12ff04fa656f98839_screen.jpg?ts=1585731784';
+
+      const querySnapshot = await getDocs(collection(db, "toko"));
+      querySnapshot.forEach((doc) => {
+        let toko = doc.data();
+        document.getElementById('NamaToko').innerHTML = toko.nama;
+        document.getElementById('LogoToko').innerHTML = toko.logo;
+      });
+    </script>
+    
     <link
       href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
       rel="stylesheet"
@@ -72,33 +110,29 @@
     <div class="container">
       <br />
       <form class="form-horizontal">
-        <div class="form-group">
+        <div class="form-group"  oninput="Update(this.value,'nama')">
           <label class="control-label col-sm-2" for="nama">Nama Toko:</label>
-          <div class="col-sm-10">
+          <div class="col-sm-10" id="NamaToko">
             <input type="text" class="form-control" />
           </div>
         </div>
-        <label for="basic-url" class="form-label">Logo Toko:</label>
-        <div class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon3">URL</span>
-          <input
-            type="text"
-            class="form-control"
-            id="basic-url"
-            aria-describedby="basic-addon3"
-          />
+        <div class="form-group"  oninput="Update(this.value,'logo')">
+          <label  class="control-label col-sm-2" for="nama">Logo Toko:</label>
+          <div class="col-sm-10" id="LogoToko">
+            <input  type="text" class="form-control" />
+          </div>
         </div>
-      </form>
-      <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
+        
+      </form><br>
+       <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
        <a href="admin2.html"><button type="submit" class="btn btn-primary" onclick="myToko()">Simpan</button></a>
-    </div>
+       </div> 
 
-    <script>
-      function myToko() {
-        confirm("Yeaayyy!!! Berhasil Merubah Data Toko.");
-      }
-    </script>
-
+      <script>
+        function myToko() {
+          confirm("Yeaayyy!!! Berhasil Merubah Data Toko.");
+        }
+      </script> 
     
     <!--===== MAIN JS =====-->
     <script src="main.js"></script>
