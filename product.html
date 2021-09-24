@@ -14,7 +14,7 @@
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
-      import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
       // TODO: Add SDKs for Firebase products that you want to use
       // https://firebase.google.com/docs/web/setup#available-libraries
@@ -161,14 +161,19 @@
       </form>
     </div>
        <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
-       <a href="admin2.html"><button type="submit" class="btn btn-primary" onclick="myFunction()">Simpan</button></a>
+       <a href="admin2.html"><button type="submit" class="btn btn-primary" onclick="updateproduct()">Simpan</button></a>
         <script>
-    function myFunction() {
-    confirm("Yeaayy!!! Berhasil Merubah Data Product.");
+    function updateproduct() {
+  const produkRef = doc(db, "product", "cvjpvySowCQ4LDzPitqc");
+  // Set the "capital" field of the city 'DC'
+  updateDoc(produkRef, {
+    deskripsi: document.getElementById("deskripsi").value,
+    harga: document.getElementById("harga").value
+  }).then(res => {
+    alert("Yeaayy!!! Berhasil Merubah Data Product.");
+  });
     }
     </script>
-
-    
     <!--===== MAIN JS =====-->
     <script src="main.js"></script>
   </body>

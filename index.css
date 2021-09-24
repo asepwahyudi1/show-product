@@ -1,0 +1,83 @@
+body {
+    margin: 0%;
+    padding: 0%;
+}
+header {
+    background: linear-gradient(-180deg,#f53d2d,#f63);;
+    width: 100%;
+    height: auto;
+}
+.logo {
+    padding: 1%;
+    padding-left: 7%;
+    margin: 0%;
+}
+.bodytengah {
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: 1%;
+}
+.ke1 {
+    float: left;
+    margin: 1%;
+}
+.infoproduk {
+    margin-top: 1%;
+    padding: 1%;
+    width: 60%;
+    float: right;
+    border: solid;
+}
+.gambarproduk {
+    width: 400px;
+    height: 400px;
+}
+.namaproduk {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    padding: 2%;
+}
+.rating {
+    padding-top: 1%;
+    padding-left: 3%;
+    padding-bottom: 1%;
+    color: gold;
+    margin-top: 1%;
+}
+.HARGABARANG {
+    background: whitesmoke;
+    color: tomato;
+    padding: 2%;
+    margin-top: 3%;
+}
+.tombolbeli {
+    color: whitesmoke;
+    text-decoration: none;
+    display: block;
+    width: 200px;
+    padding: 2% 2%;
+    margin-top: 8%;
+    margin-left: 8%;
+    margin-bottom: 3%;
+    text-align: center;
+    font-size: 24px;
+    background-color: #f53d2d
+}
+.pengiriman {
+    padding: 2%;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.logotoko {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    padding-left: 30%;
+  }
+  .namatoko {
+    margin-left: 20px;
+  }
+  .gambar {
+    border-radius: 50%;
+    border: solid;
+    width: 90px;
+    height: 90px;
+  }
