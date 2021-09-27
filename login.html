@@ -63,7 +63,7 @@
       <div class="container">
         <div class="row">
           <div class="col-sm bg-dark rounded text-light">
-            <form action="admin2.html" method="POST">
+            <form action="admin2.html" method="get" id="myForm">
               <div class="text-center">
                 <h1>Admin Login</h1>
               </div>
@@ -99,8 +99,8 @@
                   border-radius: 3px;
                   padding: 10px 20px;
                 "
-                name="login"
-                onclick="updateLogin"
+                name="submit"
+                onclick="return validasi()"
               >
                 Login
               </button>
@@ -124,6 +124,8 @@
         getDocs,
         doc,
         updateDoc,
+        query,
+        where,
       } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
       import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
 
@@ -146,24 +148,48 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
+      // Create a reference to the cities collection
+      import { collection, query, where } from "firebase/firestore";
+      const loginRef = collection(db, "login");
+
+      // Create a query against the collection.
+      const q = query(loginRef, where("user", "==", "admin"));
+
       const querySnapshot = await getDocs(collection(db, "login"));
       querySnapshot.forEach((doc) => {
         let login = doc.data();
+
         document.getElementById("user").value = login.user;
         document.getElementById("katasandi").value = login.katasandi;
       });
 
-      window.updateLogin = function () {
-        const loginRef = doc(db, "login", "6wfq4PqxQ2l9t8BpyUOT");
+      // window.updateLogin = function () {
+      //   const loginRef = doc(db, "login", "6wfq4PqxQ2l9t8BpyUOT");
 
-        // Set the "capital" field of the city 'DC'
-        updateDoc(loginRef, {
-          user: document.getElementById("user").value,
-          katasandi: document.getElementById("katasandi").value,
-        }).then((res) => {
-          alert("Yeaayyy!!! Berhasil Merubah Data login.");
-        });
-      };
+      //   // Set the "capital" field of the city 'DC'
+      //   updateDoc(loginRef, {
+      //     user: document.getElementById("user").value,
+      //     katasandi: document.getElementById("katasandi").value,
+      //   }).then((res) => {
+      //     alert("Yeaayyy!!! Berhasil Merubah Data login.");
+      //   });
+      // };
+    </script>
+    <script>
+      function validasi() {
+        var username = document.forms["myForm"]["username"].value;
+        var password = document.forms["myForm"]["password"].value;
+        if (username == "admin" && password == "admin123") {
+          alert("Username dan password anda benar");
+          return true;
+          // } else if (username == "admin" || password == "admin") {
+          //   alert("Masukan username dan password Anda");
+          //   return false;
+        } else {
+          alert("Username atau password yang Anda masukan SALAH");
+          return false;
+        }
+      }
     </script>
   </body>
 </html>
