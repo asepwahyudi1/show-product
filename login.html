@@ -65,14 +65,14 @@
           <div class="col-sm bg-dark rounded text-light">
             <form action="admin2.html" method="get" id="myForm">
               <div class="text-center">
-                <h1>Admin Login</h1>
+                <h2>Admin Login</h2>
               </div>
               <div class="mb-3">
                 <label for="text" class="form-label">Username</label>
                 <input
                   type="text"
                   class="form-control"
-                  id="user"
+                  id="username"
                   placeholder="Masukan Username Anda..."
                   name="username"
                 />
@@ -82,29 +82,28 @@
                 <input
                   type="password"
                   class="form-control"
-                  id="katasandi"
+                  id="password"
                   placeholder="Masukan Password Anda..."
                   name="password"
                 />
               </div>
-              <button
-                type="submit"
-                class="btn btn-primary"
-                style="
-                  background: #04396e;
-                  color: white;
-                  font-size: 11pt;
-                  width: 100%;
-                  border: none;
-                  border-radius: 3px;
-                  padding: 10px 20px;
-                "
-                name="submit"
-                onclick="return validasi()"
-              >
-                Login
-              </button>
             </form>
+            <br />
+            <button
+              class="btn btn-primary"
+              style="
+                background: #04396e;
+                color: white;
+                font-size: 11pt;
+                width: 100%;
+                border: none;
+                border-radius: 3px;
+                padding: 10px 20px;
+              "
+              onclick="return validasi()"
+            >
+              Login</button
+            ><br />
             <br />
             <div align="center">
               <a href="index.html"
@@ -115,6 +114,7 @@
         </div>
       </div>
     </div>
+
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -148,36 +148,67 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
-      // Create a reference to the cities collection
-      import { collection, query, where } from "firebase/firestore";
-      const loginRef = collection(db, "login");
-
-      // Create a query against the collection.
-      const q = query(loginRef, where("user", "==", "admin"));
-
-      const querySnapshot = await getDocs(collection(db, "login"));
-      querySnapshot.forEach((doc) => {
-        let login = doc.data();
-
-        document.getElementById("user").value = login.user;
-        document.getElementById("katasandi").value = login.katasandi;
-      });
-    </script>
-    <script>
-      function validasi() {
+      window.validasi = async function () {
         var username = document.forms["myForm"]["username"].value;
         var password = document.forms["myForm"]["password"].value;
-        if (username == "admin" && password == "admin123") {
-          alert("Username dan password anda benar");
-          return true;
-          // } else if (username == "admin" || password == "admin") {
-          //   alert("Masukan username dan password Anda");
-          //   return false;
-        } else {
-          alert("Username atau password yang Anda masukan SALAH");
-          return false;
+
+        const loginRef = collection(db, "login");
+
+        const q = query(loginRef, where("username", "==", "admin"));
+        const querySnapshot = await getDocs(q);
+
+        let user = {
+          username: "",
+          password: "",
+        };
+
+        if (querySnapshot.size == 1) {
+          querySnapshot.forEach((doc) => {
+            user.username = doc.data().username;
+            user.password = doc.data().password;
+
+            if (username == user.username && password == user.password) {
+              alert("Username dan password anda benar");
+              window.location.href = "admin2.html";
+              return true;
+            } else {
+              alert("Username atau password yang Anda masukan SALAH");
+              return false;
+            }
+          });
         }
-      }
+      };
+
+      // window.validasi = async function () {
+      //   var username = document.forms["myForm"]["username"].value;
+      //   var password = document.forms["myForm"]["password"].value;
+      //   // Create a reference to the cities collection
+      //   import {
+      //     collection,
+      //     query,
+      //     where,
+      //   } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      //   const loginRef = collection(db, "login");
+
+      //   // Create a query against the collection.
+      //   const q = query(loginRef, where("username", "==", username));
+
+      //   const querySnapshot = await getDocs(q);
+      //   querySnapshot.forEach((doc) => {
+      //     let login = doc.data();
+
+      //     document.getElementById("username").value = login.username;
+      //     document.getElementById("password").value = login.password;
+      //   });
+
+      //   if (username == "username" && password == "passwword") {
+      //     alert("Username dan password anda benar");
+      //     return true;
+      //   } else {
+      //     alert("Username atau password yang Anda masukan SALAH");
+      //     return false;
+      //   }
+      // };
     </script>
   </body>
 </html>

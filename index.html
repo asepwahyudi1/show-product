@@ -53,6 +53,11 @@
         document.getElementById('gambarproduk2').src = product.gambar[1];
         document.getElementById('gambarproduk3').src = product.gambar[2];
         document.getElementById('gambarproduk4').src = product.gambar[3];
+
+        document.getElementById('indicator-gambarproduk1').src = product.gambar[0];
+document.getElementById('indicator-gambarproduk2').src = product.gambar[1];
+document.getElementById('indicator-gambarproduk3').src = product.gambar[2];
+document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
       });
       
        const querytoko = await getDocs(collection(db, "toko"));
@@ -75,63 +80,65 @@
   <a href="login.html" class="login"><button class="buttonlogin"><b class="fas fa-sign-in-alt"></b></button></a></p>
 </div>
   </header>
-<body style="background-image: url(img/bg3.png); background-size: 100%;">
+<body style="background-image: url(img/bg3.png); background-size: 100%; background-color: whitesmoke;">
 	<section class="wrapper">
     		<footer class="div-1">
-          <!-- <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel"> -->
-            <!-- <div class="carousel-indicators"> -->
-              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button> -->
-              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button> -->
-              <!-- <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button> -->
-            <!-- </div> -->
-            <!-- <div class="carousel-inner"> -->
-              <!-- <div class="carousel-item active"> -->
-                <!-- <img class="gambarproduk" id="gambarproduk1" class="d-block w-100" alt="..."> -->
-              <!-- </div> -->
-              <!-- <div class="carousel-item"> -->
-                <!-- <img class="gambarproduk" id="gambarproduk2" class="d-block w-100" alt="..."> -->
-              <!-- </div> -->
-              <!-- <div class="carousel-item"> -->
-                <!-- <img class="gambarproduk" id="gambarproduk3" class="d-block w-100" alt="..."> -->
-              <!-- </div> -->
-              <!-- <div class="carousel-item"> -->
-                <!-- <img class="gambarproduk" id="gambarproduk4" class="d-block w-100" alt="..."> -->
-              <!-- </div> -->
-            <!-- </div> -->
-            <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"> -->
-              <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-              <!-- <span class="visually-hidden">Previous</span> -->
-            <!-- </button> -->
-            <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next"> -->
-              <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-              <!-- <span class="visually-hidden">Next</span> -->
-            <!-- </button> -->
-          <!-- </div> -->
-            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active">
-                    <img class="gambarproduk" id="gambarproduk1" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="gambarproduk" id="gambarproduk2" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="gambarproduk" id="gambarproduk3" class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item">
-                    <img class="gambarproduk" id="gambarproduk4" class="d-block w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
+          <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active">
+                <img class="gambarproduk" id="gambarproduk1" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img class="gambarproduk" id="gambarproduk2" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img class="gambarproduk" id="gambarproduk3" class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item">
+                <img class="gambarproduk" id="gambarproduk4" class="d-block w-100" alt="...">
               </div>
             </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+            <div>
+              <div class="carousel-indicators" style="margin-top: 100%;">
+              <button style="width: 90%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="img-indicator" id="indicator-gambarproduk1"></button>
+              <button style="width: 90%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"><img class="img-indicator" id="indicator-gambarproduk2"></button>
+              <button style="width: 90%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"><img class="img-indicator" id="indicator-gambarproduk3"></button>
+              <button style="width: 90%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"><img class="img-indicator" id="indicator-gambarproduk4"></button>
+          </div>
+          </div>
+            <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"> -->
+                <!-- <div class="carousel-inner"> -->
+                  <!-- <div class="carousel-item active"> -->
+                    <!-- <img class="gambarproduk" id="gambarproduk1" class="d-block w-100" alt="..."> -->
+                  <!-- </div> -->
+                  <!-- <div class="carousel-item"> -->
+                    <!-- <img class="gambarproduk" id="gambarproduk2" class="d-block w-100" alt="..."> -->
+                  <!-- </div> -->
+                  <!-- <div class="carousel-item"> -->
+                    <!-- <img class="gambarproduk" id="gambarproduk3" class="d-block w-100" alt="..."> -->
+                  <!-- </div> -->
+                  <!-- <div class="carousel-item"> -->
+                    <!-- <img class="gambarproduk" id="gambarproduk4" class="d-block w-100" alt="..."> -->
+                  <!-- </div> -->
+                <!-- </div> -->
+                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> -->
+                  <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
+                  <!-- <span class="visually-hidden">Previous</span> -->
+                <!-- </button> -->
+                <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"> -->
+                  <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
+                  <!-- <span class="visually-hidden">Next</span> -->
+                <!-- </button> -->
+              <!-- </div> -->
+            <!-- </div> -->
         </footer>
 		<footer class="div-2">
             <h3 class="NAMAPRODUK" id="namaProduct"></h3>
