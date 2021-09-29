@@ -63,8 +63,9 @@
       grid-template-columns: 1fr 1fr;
   }
        .div-1 {
-           width: auto;
-           height: auto; 
+      border: solid;
+      width: auto;
+      height: 115%; 
       text-align: center; 
       margin-left: 15%;
       background-color: white;
@@ -72,12 +73,12 @@
        .div-2 {
       width: auto;
       margin-right: 15%;
-           height: auto;
+      height: 115%;
       background: white;
      }
     .gambarproduk {
-      height: 400px;
-      width: 400px;
+      height: 450px;
+      width: 450px;
       margin: 3%;
    }
     .NAMAPRODUK {
@@ -122,7 +123,7 @@
       padding: 4%;
     }
     .logotoko {
-      padding-top: 1%;
+      padding-top: 9%;
       margin-bottom: 20px;
       padding-left: 8.3%;
       padding-right: 8.3%;
@@ -777,3 +778,12 @@
     background: whitesmoke;
     }
    }
+   .img-indicator {
+       width: inherit;
+       margin: 5%;
+   }
+
+   .carousel-indicators [data-bs-target]{
+        text-indent: 1px !important;
+        padding-top: 5%;
+   } 
