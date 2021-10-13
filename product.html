@@ -36,7 +36,7 @@
       <div class="header__toggle">
         <i class="bx bx-menu" id="header-toggle"></i>
       </div>
-     <h1 style="margin-right: 35%;">Pengaturan Product</h1>
+     <h4 style="margin: auto;">Pengaturan Product</h4>
     </header>
 
     <div class="l-navbar" id="nav-bar">
@@ -109,34 +109,51 @@
                 <label for="basic-url">Gambar:</label>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">URL</span>
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile1">
+                      <img id="myImg1" style="height: 100px; width: 100px; border: 1px solid black;">
                     </div>
-                    <input type="text" class="form-control" id="url1" aria-describedby="basic-addon3">
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+                    </div>
+                    
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">URL</span>
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile2">
+                      <img id="myImg2" style="height: 100px; width: 100px; border: 1px solid black;">
                     </div>
-                    <input type="text" class="form-control" id="url2" aria-describedby="basic-addon3">
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+                    </div>
+                    
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">URL</span>
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile3">
+                      <img id="myImg3" style="height: 100px; width: 100px; border: 1px solid black;">
                     </div>
-                    <input type="text" class="form-control" id="url3" aria-describedby="basic-addon3">
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+                    </div>
+                    
                 </div>
                 <div class="input-group mb-3">
                     <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon3">URL</span>
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile4">
+                      <img id="myImg4" style="height: 100px; width: 100px; border: 1px solid black;">
                     </div>
-                    <input type="text" class="form-control" id="url4" aria-describedby="basic-addon3">
-                </div>                      
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+                    </div>
+                    
+                </div>         
+                    <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
+       <button type="button" class="btn btn-primary" onclick="updateProduct()">Simpan</button>          
         </div>
-   
+       
       </form>
     </div>
-       <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
-       <button type="button" class="btn btn-primary" onclick="updateProduct()">Simpan</button>
+        
 
     
     <script type="module">
@@ -177,14 +194,14 @@
         bintang += '<h6 class="fas fa-star"></h6>';
         }
         document.getElementById('rating').value = product.rating;
-        document.getElementById('url1').value = product.gambar[0];
-        document.getElementById('url2').value = product.gambar[1];
-        document.getElementById('url3').value = product.gambar[2];
-        document.getElementById('url4').value = product.gambar[3];
+        // document.getElementById('url1').value = product.gambar[0];
+        // document.getElementById('url2').value = product.gambar[1];
+        // document.getElementById('url3').value = product.gambar[2];
+        // document.getElementById('url4').value = product.gambar[3];
       });
 
       window.updateProduct = function () {
-        const productRef = doc(db, "product", "cvjpvySowCQ4LDzPitqc");
+        const productRef = doc(db, "product", "HvRUgYlONyxEjgb4mUkI");
 
         // Set the "capital" field of the city 'DC'
         
@@ -194,19 +211,37 @@
           harga: document.getElementById("harga").value,
           pengirim: document.getElementById("pengirim").value,
           deskripsi: document.getElementById("deskripsi").value,
-          gambar: [
-              document.getElementById("url1").value,
-              document.getElementById("url2").value,
-              document.getElementById("url3").value,
-              document.getElementById("url4").value
-          ] 
+          // gambar: [
+          //     document.getElementById("url1").value,
+          //     document.getElementById("url2").value,
+          //     document.getElementById("url3").value,
+          //     document.getElementById("url4").value
+          // ] 
 
         }).then(res => {
           alert("Yeaayyy!!! Berhasil Merubah Data product.");
         });
       }
       
+      var ImgUrl;
+      var files = [];
+      var reader = new FileReader();
 
+      var input = document.getElementById('formFile1');
+      var input = document.getElementById('formFile2');
+      var input = document.getElementById('formFile3');
+      var input = document.getElementById('formFile4');
+      input.onchange = e => {
+        files = e.target.files;
+        reader = new FileReader();
+        reader.onload = function(){
+          document.getElementById("myImg1").src = reader.result;
+          document.getElementById("myImg2").src = reader.result;
+          document.getElementById("myImg3").src = reader.result;
+          document.getElementById("myImg4").src = reader.result;
+        }
+        reader.readAsDataURL(files[0])
+      } 
       
     </script>
 

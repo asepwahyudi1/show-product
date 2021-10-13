@@ -90,6 +90,7 @@
             </form>
             <br />
             <button
+              id="enterClick"
               class="btn btn-primary"
               style="
                 background: #04396e;
@@ -162,14 +163,14 @@
           password: "",
         };
 
+        var input = document.getElementById("");
         if (querySnapshot.size == 1) {
           querySnapshot.forEach((doc) => {
             user.username = doc.data().username;
             user.password = doc.data().password;
 
             if (username == user.username && password == user.password) {
-              alert("Username dan password anda benar");
-              window.location.href = "admin2.html";
+              window.location.href = "beranda.html";
               return true;
             } else {
               alert("Username atau password yang Anda masukan SALAH");

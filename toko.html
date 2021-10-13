@@ -32,13 +32,14 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+    <style>img{height: 100px; width: 100px; border: 1px solid black;}</style>
   </head>
   <body id="body-pd">
     <header class="header" id="header">
       <div class="header__toggle">
         <i class="bx bx-menu" id="header-toggle"></i>
       </div>
-     <h1 style="margin-right: 35%;">Pengaturan Toko</h1>
+     <h3 style="margin: auto;">Pengaturan Toko</h3>
     </header>
 
     <div class="l-navbar" id="nav-bar">
@@ -88,13 +89,14 @@
         </div>
         <div class="form-group" id="LogoToko">
           <label  class="control-label col-sm-2" for="nama">Logo Toko:</label>
-          <div class="col-sm-10" >
-            <input  type="text" id="logo" class="form-control" />
+          <div class="mb-3">
+            <input class="form-control" type="file"  id="formFile">
+            <img id="myImg">
           </div>
         </div>
         
       </form><br>
-       <a href="admin2.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
+       <a href="beranda.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
        <button type="button" class="btn btn-primary" onclick="updateToko()">Simpan</button></a>
        </div> 
 
@@ -123,10 +125,24 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
+      var ImgUrl;
+      var files = [];
+      var reader = new FileReader();
+
+      var input = document.getElementById('formFile');
+      input.onchange = e => {
+        files = e.target.files;
+        reader = new FileReader();
+        reader.onload = function(){
+          document.getElementById("myImg").src = reader.result;
+        }
+        reader.readAsDataURL(files[0])
+      } 
+
       const querySnapshot = await getDocs(collection(db, "toko"));
       querySnapshot.forEach((doc) => {
         let toko = doc.data();
-        document.getElementById('logo').value = toko.logo;
+        // document.getElementById('logo').value = toko.logo;
         document.getElementById('nama').value = toko.nama;
       });
 
@@ -136,7 +152,7 @@
         // Set the "capital" field of the city 'DC'
         updateDoc(tokoRef, {
           nama: document.getElementById("nama").value,
-          logo: document.getElementById("logo").value
+          // logo: document.getElementById("logo").value
         }).then(res => {
           alert("Yeaayyy!!! Berhasil Merubah Data Toko.");
         });
