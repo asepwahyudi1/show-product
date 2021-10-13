@@ -37,7 +37,7 @@
       const db = getFirestore(app);
       let bintang = '<h6 class="fas fa-star"></h6>';
       
-      const querySnapshot = await getDocs(collection(db, "product"));
+      const querySnapshot = await getDocs(collection(db, "Product"));
       querySnapshot.forEach((doc) => {
         let product = doc.data();
         document.getElementById('namaProduct').innerHTML = product.nama;
@@ -106,6 +106,7 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
               <span class="carousel-control-next-icon" aria-hidden="true"></span>
               <span class="visually-hidden">Next</span>
             </button>
+            <P>
             <div>
               <div class="carousel-indicators" style="margin-top: 100%;">
               <button style="width: 90%; margin-top: 5%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"><img class="img-indicator" id="indicator-gambarproduk1"></button>
@@ -114,31 +115,7 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
               <button style="width: 90%; margin-top: 5%;" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"><img class="img-indicator" id="indicator-gambarproduk4"></button>
           </div>
           </div>
-            <!-- <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel"> -->
-                <!-- <div class="carousel-inner"> -->
-                  <!-- <div class="carousel-item active"> -->
-                    <!-- <img class="gambarproduk" id="gambarproduk1" class="d-block w-100" alt="..."> -->
-                  <!-- </div> -->
-                  <!-- <div class="carousel-item"> -->
-                    <!-- <img class="gambarproduk" id="gambarproduk2" class="d-block w-100" alt="..."> -->
-                  <!-- </div> -->
-                  <!-- <div class="carousel-item"> -->
-                    <!-- <img class="gambarproduk" id="gambarproduk3" class="d-block w-100" alt="..."> -->
-                  <!-- </div> -->
-                  <!-- <div class="carousel-item"> -->
-                    <!-- <img class="gambarproduk" id="gambarproduk4" class="d-block w-100" alt="..."> -->
-                  <!-- </div> -->
-                <!-- </div> -->
-                <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev"> -->
-                  <!-- <span class="carousel-control-prev-icon" aria-hidden="true"></span> -->
-                  <!-- <span class="visually-hidden">Previous</span> -->
-                <!-- </button> -->
-                <!-- <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next"> -->
-                  <!-- <span class="carousel-control-next-icon" aria-hidden="true"></span> -->
-                  <!-- <span class="visually-hidden">Next</span> -->
-                <!-- </button> -->
-              <!-- </div> -->
-            <!-- </div> -->
+        </P>
         </footer>
 		<footer class="div-2">
             <h3 class="NAMAPRODUK" id="namaProduct"></h3>
@@ -152,21 +129,69 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
                     <h6 class="tempatpegiriman">Pengiriman: <span id="kirim"></span></h6>
                 </div>
                 <div>
-                    <button class="tombolbeli">Beli Sekarang</button>
+                  <button class="tombolbeli" href="https://wa.me/6285793566962?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual">Beli Sekarang</button>
                 </div>
             </div>
+            <hr>
         </footer>
 	</section>
   <div class="logotoko">
     <p class="gambarlogotoko"><img class="gambar" id="logo"/><strong class="namatoko" id="namatoko"></strong></p>
   </div>
   <div class="fonakhir">
-    <h1 class="aligndeskripsi"><div class="bgaligndeskripsi">Deskripsi</div></h1>
+    <h5 class="aligndeskripsi"><div class="bgaligndeskripsi">Deskripsi</div></h5>
     <div class="descripsi">
       <p id="deskripsi" class="deskripsi"><div></div></p>
       </div>
     </div>
 </div>
-
+<div class = "banner-sub-content">
+	<div class = "banner-sub-content" style="margin-left: 9%; margin-right: 5.5%;">
+		<div class="row" style="text-align: center;">
+			<button class="card" style="width: 16%">
+				<img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+				<div class="card-body">
+				  <h5 class="card-title">nama produk</h5>
+				  <p class="hargabaranglist">harga</p>
+				</div>
+			  </button>
+			  <button class="card" style="width: 16%">
+				<img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+				<div class="card-body">
+				  <h5 class="card-title">nama produk</h5>
+				  <p class="hargabaranglist">harga</p>
+				</div>
+			</button>
+			<button class="card" style="width: 16%">
+				<img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+				<div class="card-body">
+				  <h5 class="card-title">nama produk</h5>
+				  <p class="hargabaranglist">harga</p>
+				</div>
+      </button>
+			  <button class="card" style="width: 16%">
+				<img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+				<div class="card-body">
+				  <h5 class="card-title">nama produk</h5>
+				  <p class="hargabaranglist">harga</p>
+				</div>
+			  </button>
+        <button class="card" style="width: 16%">
+          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">nama produk</h5>
+            <p class="hargabaranglist">harga</p>
+          </div>
+          </button>
+          <button class="card" style="width: 16%">
+            <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title">nama produk</h5>
+              <p class="hargabaranglist">harga</p>
+            </div>
+            </button>
+		</div>
+	</div>
+</div>    
 </body>
 </html>
