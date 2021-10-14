@@ -7,6 +7,11 @@
     <title>show-product</title>
     <link rel="stylesheet" href="fontawesome/css/all.css">
     <link rel="stylesheet" href="index.css">
+    <script src=>
+      // function WA() {
+        // Document.getElementById('demo').innerHTML = '<a herf="https://wa.me/6281355538777?text=Saya"></a>'
+      // }
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -37,13 +42,13 @@
       const db = getFirestore(app);
       let bintang = '<h6 class="fas fa-star"></h6>';
       
-      const querySnapshot = await getDocs(collection(db, "Product"));
+      const querySnapshot = await getDocs(collection(db, "product"));
       querySnapshot.forEach((doc) => {
         let product = doc.data();
         document.getElementById('namaProduct').innerHTML = product.nama;
         document.getElementById('deskripsi').innerHTML = product.deskripsi;
         document.getElementById('kirim').innerHTML = product.pengirim;
-        document.getElementById('harga').innerHTML = product.harga;
+        document.getElementById('harga').innerHTML = product.harga
         // looping bintang
         for (let i = 0; i < product.rating - 1; i++) {
         bintang += '<h6 class="fas fa-star"></h6>';
@@ -129,7 +134,7 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
                     <h6 class="tempatpegiriman">Pengiriman: <span id="kirim"></span></h6>
                 </div>
                 <div>
-                  <button class="tombolbeli" href="https://wa.me/6285793566962?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual">Beli Sekarang</button>
+                <a href="https://wa.me/6281355538777?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual" class="tombolbeli" id="demo" onclick="my()">Beli Sekarang</a>>
                 </div>
             </div>
             <hr>
