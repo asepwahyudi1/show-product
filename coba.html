@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+
+    <script src="https://www.gstatic.com/firebasejs/8.2.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.2/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <script type="module">
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.firestore();
+
+      async function main() {
+        const userObj = new User();
+        console.log(await userObj.getAll());
+      }
+
+      class User {
+        usersRef = db.collection("users");
+
+        async add(name, password, email) {
+          const user = { name, password, email };
+
+          try {
+            const docRef = await this.usersRef.add(user);
+            console.log("User Added with ID: ", docRef.id);
+            user.id = docRef.id;
+          } catch (error) {
+            console.error("Error Adding User: ", error);
+          }
+
+          return user;
+        }
+
+        async getAll() {
+          const users = [];
+
+          try {
+            const snapshot = await this.usersRef.get();
+            snapshot.forEach((doc) =>
+              users.push({ id: doc.id, ...doc.data() })
+            );
+          } catch (err) {
+            console.error("Error Getting Users: ", error);
+          }
+
+          return users;
+        }
+
+        async get(id) {
+          let user;
+
+          try {
+            let doc = await this.usersRef.doc(id).get();
+
+            if (doc.exists) user = { id: doc.id, ...doc.data() };
+            else console.log("No document found with id: ", id);
+          } catch (error) {
+            console.error("Error in getting user: ", error);
+          }
+
+          return user;
+        }
+
+        async delete(id) {
+          try {
+            await this.usersRef.doc(id).delete();
+            console.log("User is deleted with id: ", id);
+          } catch (error) {
+            console.error("Error in deleting user: ", error);
+          }
+        }
+      }
+
+      main();
+    </script>
+  </body>
+</html>
