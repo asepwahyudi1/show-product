@@ -35,7 +35,14 @@
       const app = initializeApp(firebaseConfig);
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
-      
+
+      const querySnapshot = await getDocs(collection(db, "product"));
+      querySnapshot.forEach((doc) => {
+        var product = doc.data();
+        document.getElementById('gambarproduk').src = product.gambar[0];
+          document.getElementById('namaProduk').innerHTML = product.nama;
+          document.getElementById('hargaProduk').innerHTML = product.harga;
+        });
     </script>
 
     <link
@@ -106,19 +113,18 @@
     <br>
     <div class="container">
    
-      <div class="row">
-        
-        <div class="col" style="background-color: cornflowerblue;"><b>gambar</b></div>
-        <div class="col" style="background-color: cornflowerblue;"><b>Nama</b></div>
-        <div class="col" style="background-color: cornflowerblue;"><b>harga</b></div>
-        <div class="col" style="background-color: cornflowerblue;"><b>aksi</b></div>
-        <div class="row" style="margin: 1%;">
-          <div class="col"><img src="logo.png" width="100%"></div>
-          <div class="col">leptop</div>
-          <div class="col">10000</div>
+      <div class="row" style="border: solid;">
+        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Gambar</h4></div>
+        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Nama</h4></div>
+        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Harga</h4></div>
+        <div class="col" style="background-color: cornflowerblue; border-bottom:solid; "><h4>Aksi</h4></div>
+        <div class="row" style="margin: 0px;">
+          <div class="col"><img id="gambarproduk" width="80%"></div>
+          <div class="col"><h5 id="namaProduk"></h5></div>
+          <div class="col"><h4 id="hargaProduk"></h4></div>
           <div class="col"> <button type="button" style="margin: 1%;" class="btn btn-warning">edit</button><button type="button" class="btn btn-danger">Delete</button></div>
         </div>
-        <div class="row" style="margin: 1%;">
+        <div class="row" style="margin: 0px;">
           <div class="col"><img src="bg.jpg" width="100%"></div>
           <div class="col">leptop</div>
           <div class="col">10000</div>

@@ -63,7 +63,6 @@
       grid-template-columns: 1fr 1fr;
   }
        .div-1 {
-      border: solid;
       width: auto;
       height: 115%; 
       text-align: center; 
@@ -79,7 +78,7 @@
     .gambarproduk {
       height: 450px;
       width: 450px;
-      margin: 3%;
+      margin: 5%;
    }
     .NAMAPRODUK {
       padding: 15px;
@@ -107,9 +106,7 @@
       display: block;
       width: 200px;
       padding: 5px 10px;
-      margin-top: 5%;
-      margin-bottom: 5%;
-      margin-left: 40%;
+      margin-top: 10%;
       border: transparent;
       text-align: center;
       font-size: 24px;
@@ -117,13 +114,14 @@
     }
     .descripsi {
       height: auto;
+      margin-top: -4%;
     }
     .deskripsi {
       text-align: left; 
       padding: 4%;
     }
     .logotoko {
-      padding-top: 9%;
+      padding-top: 6%;
       margin-bottom: 20px;
       padding-left: 8.3%;
       padding-right: 8.3%;
@@ -152,7 +150,7 @@
     }
     .aligndeskripsi {
       text-align: center; 
-      padding-top: 3%; 
+      padding-top: 2%; 
       padding-left: 3%; 
       padding-right: 3%; 
       margin-bottom: 1%;

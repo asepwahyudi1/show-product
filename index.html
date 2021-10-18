@@ -44,7 +44,7 @@
       
       const querySnapshot = await getDocs(collection(db, "product"));
       querySnapshot.forEach((doc) => {
-        let product = doc.data();
+        var product = doc.data();
         document.getElementById('namaProduct').innerHTML = product.nama;
         document.getElementById('deskripsi').innerHTML = product.deskripsi;
         document.getElementById('kirim').innerHTML = product.pengirim;
@@ -133,9 +133,33 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
                 <div>
                     <h6 class="tempatpegiriman">Pengiriman: <span id="kirim"></span></h6>
                 </div>
-                <div>
-                <a href="https://wa.me/6281355538777?text=Saya%20tertarik%20dengan%20mobil%20Anda%20yang%20dijual" class="tombolbeli" id="demo" onclick="my()">Beli Sekarang</a>>
-                </div>
+                <!-- class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" -->
+<a href="" id="abc"><button type="button" onclick="myFunction()" class="tombolbeli">
+  Beli Sekarang
+</button></a>
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 45%;"><i class="fab fa-whatsapp btn btn-success"></i></h5> -->
+        <!-- <a href="" id="abc"><button onclick="myFunction()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a> -->
+      <!-- </div> -->
+      <!-- <div class="modal-body">
+        Apakah anda yakin ingin membeli barang ini!!!!!!!!!!!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <a href="" id="abc" type="button" class="btn btn-primary" >Beli</a> -->
+        <script>
+          function myFunction() {
+            var val = data.val();
+            document.getElementById("abc").href="https://wa.me/6282119646486?text=" + namaProduct[i];
+          }		
+          </script>
+      </div>
+    </div>
+  </div>
+</div>
             </div>
             <hr>
         </footer>

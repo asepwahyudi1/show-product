@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.min.css"
+    />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdn.jsdelivr.net/combine/npm/sweetalert2@11.1.7,npm/sweetalert2@11.1.8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.7/dist/sweetalert2.all.min.js"></script>
+    <title>Crud</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" id="firstSection">
+          <form action="" id="form" class="border p-4 mb-4">
+            <div class="form-group">
+              <label for="">Task</label>
+              <input
+                type="text"
+                placeholder="Enter Task"
+                class="form-control"
+                id="task"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="">Deskripsi</label>
+              <input
+                type="text"
+                placeholder="deskripsi"
+                class="form-control"
+                id="description"
+              />
+            </div>
+            <br />
+
+            <button type="submit" class="btn btn-primary" id="button1">
+              <i class="fas fa-plus"></i>Tambahkan Task
+            </button>
+            <button id="button2" class="fas fa-success" style="display: none">
+              Update Task
+            </button>
+            <button id="button3" class="fas fa-danger" style="display: none">
+              Batal
+            </button>
+          </form>
+        </div>
+
+        <div class="col-md-6" id="cardSection"></div>
+      </div>
+    </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      //   import { initializeApp } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js";
+      //   import {
+      //     getFirestore,
+      //     collection,
+      //     getDocs,
+      //     doc,
+      //     updateDoc,
+      //   } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js";
+      //   import { getAnalytics } from "https://www.gstatic.com/firebasejs/8.10.0/firebase-analytics.js";
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      var firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      document.getElementById("form").addEventListener("submit", (e) => {
+        var task = document.getElementById("task").value;
+        var description = document.getElementById("description").value;
+        e.preventDefault();
+        createTask(task, description);
+        form.reset();
+      });
+
+      function createTask(taskName, description) {
+        var task = {
+          task: taskName,
+          description: description,
+        };
+        let db = firebase.firestore().collection("product/");
+        db.add(task).then(() => {
+          Swal.fire("Kerja Bagus!", "Task Added!", "Sukses");
+          document.getElementById("cardSection").innerHTML = "";
+          readTask();
+        });
+      }
+
+      function readTask() {
+        firebase
+          .firestore()
+          .collection("product")
+          .onSnapshot(function (snapshot) {
+            document.getElementById("cardSection").innerHTML = "";
+            snapshot.forEach(function (taskValue) {
+              document.getElementById("cardSection").innerHTML += `
+                  <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">${taskValue.data().nama}</h5>
+                        <p class="card-text">${taskValue.data().harga}</p>
+                        <button type="submit" color:white; class="btn btn-warning" onclick="updateTask('${
+                          taskValue.id
+                        }','${taskValue.data().task}','${
+                taskValue.data().description
+              }')">
+                        <i class="fas fa-edit"></i>Edit Task
+                        </button>
+                        <button type="submit" class="btn btn-danger" onclick="deleteTask('${
+                          taskValue.id
+                        }')"><i class="fas fa-trash-alt"></i>
+                        Hapus Task
+                        </button>
+                    </div>
+                  </div>`;
+            });
+          });
+      }
+
+      function reset() {
+        document.getElementById("firstSection").innerHTML = `
+        <form action="" id="form" class="border p-4 mb-4">
+            <div class="form-group">
+              <label for="">Task</label>
+              <input
+                type="text"
+                placeholder="Enter Task"
+                class="form-control"
+                id="task"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="">Deskripsi</label>
+              <input
+                type="text"
+                placeholder="deskripsi"
+                class="form-control"
+                id="description"
+              />
+            </div>
+
+            <button type="submit" class="btn btn-primary" id="button1">
+              <i class="fas fa-plus"></i>Tambahkan Task
+            </button>
+            <button id="button2" class="fas fa-success" style="display: none">
+              Update Task
+            </button>
+            <button id="button3" class="fas fa-danger" style="display: none">
+              Batal
+            </button>
+          </form>`;
+
+        document.getElementById("form").addEventListener("submit", (e) => {
+          var task = document.getElementById("task").value;
+          var description = document.getElementById("description").value;
+          var description = document.getElementById("description").value;
+          e.preventDefault();
+          createTask(task, description);
+          form.reset();
+        });
+      }
+      function updateTask(id, name, description) {
+        document.getElementById("firstSection").innerHTML = `
+          <form action="" id="form2" class="border p-4 mb-4">
+            <div class="form-group">
+              <label for="">Task</label>
+              <input
+                type="text"
+                placeholder="Enter Task"
+                class="form-control"
+                id="task"
+              />
+            </div>
+
+            <div class="form-group">
+              <label for="">Deskripsi</label>
+              <input
+                type="text"
+                placeholder="deskripsi"
+                class="form-control"
+                id="description"
+              />
+            </div>
+
+            <button style="display:none" class="btn btn-primary" id="button1">
+              <i class="fas fa-plus">Tambahkan Task</i>
+            </button>
+            <button id="button2" type="submit" class="btn btn-success" style="display: inline-block"><i class="fas fa-sync"></i>
+              Update Task
+            </button>
+            <button id="button3" class="btn btn-danger" style="display: inline-block"><i class="fas fa-ban"></i>
+              Batal
+            </button>
+          </form>`;
+
+        document.getElementById("form2"),
+          addEventListener("submit", (e) => {
+            e.preventDefault();
+          });
+        document.getElementById("button3"),
+          addEventListener("click", (e) => {
+            reset();
+          });
+        document.getElementById("button2"),
+          addEventListener("click", (e) => {
+            updateTask2(
+              id,
+              document.getElementById("task").value,
+              document.getElementById("description").value
+            );
+          });
+        document.getElementById("task").value = name;
+        document.getElementById("description").value = description;
+      }
+
+      function updateTask2(id, name, description) {
+        var taskUpdated = {
+          task: name,
+          description: description,
+        };
+        let db = firebase.firestore().collection("product").doc(id);
+        db.set(taskUpdated).then(() => {
+          Swal.fire("Kerja Bagus!", "Task update!", "Sukses");
+        });
+        document.getElementById("cardSection").innerHTML = "";
+
+        readTask();
+        reset();
+      }
+    //   function deleteTask(id) {
+    //     firebase
+    //       .firestore()
+    //       .collection("product")
+    //       .doc(id)
+    //       .delete()
+    //       .then(() => {
+    //         Swal.fire("Kerja Bagus!", "Task removed!", "Sukses");
+    //       });
+    //     reset();
+    //     document.getElementById("cardSection").innerHTML = "";
+    //     readTask();
+    //   }
+    
+    function deleteTask() {
+        firebase.database().ref("product/"+ModRoll.value).remove().then(
+            function(){
+                alert("record was delected");
+                Select_AllData();
+                $("#exampleModalCenter").modal('hide');
+            }
+        )
+    }
+    </script>
+  </body>
+</html>

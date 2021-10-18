@@ -1,38 +1,237 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>LOGIN</title>
-    <link rel="stylesheet" type="text/css" href="login.css" />
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css"
+      integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+      integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns"
+      crossorigin="anonymous"
+    ></script>
+    <title>Admin Login</title>
+    <style>
+      body {
+        background-color: #04396e;
+      }
+
+      .col-sm {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 30%;
+        padding: 20px;
+      }
+
+      @media screen and (max-width: 900px) {
+        .col-sm {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 50%;
+          padding: 20px;
+        }
+      }
+
+      @media screen and (max-width: 600px) {
+        .col-sm {
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          transform: translate(-50%, -50%);
+          width: 80%;
+          padding: 20px;
+        }
+      }
+    </style>
   </head>
   <body>
-    <div class="kotak_login">
-      <p class="tulisan_login">Login Admin</p>
-
-      <form>
-        <label>Username</label>
-        <input
-          type="text"
-          name="username"
-          class="form_login"
-          placeholder="Username .."
-        />
-
-        <label>Password</label>
-        <input
-          type="text"
-          name="password"
-          class="form_login"
-          placeholder="Password .."
-        />
-        <center>
-          <a href="admin2.html" class="tombol_login" type="submit">Login</a>
-        </center>
-        <br />
-        <br />
-        <center class="kembali">
-          <a class="link" href="index.html">kembali</a>
-        </center>
-      </form>
+    <div class="container-fluid">
+      <div class="container">
+        <div class="row">
+          <div class="col-sm bg-dark rounded text-light">
+            <form action="admin2.html" method="get" id="myForm">
+              <div class="text-center">
+                <h2>Admin Login</h2>
+              </div>
+              <div class="mb-3">
+                <label for="text" class="form-label">Username</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  placeholder="Masukan Username Anda..."
+                  name="username"
+                />
+              </div>
+              <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  placeholder="Masukan Password Anda..."
+                  name="password"
+                />
+              </div>
+            </form>
+            <br />
+            <button
+              onkeypress="if(event.key == 'Enter')"
+              role="search"
+              id="enterClick"
+              class="btn btn-primary search"
+              style="
+                background: #04396e;
+                color: white;
+                font-size: 11pt;
+                width: 100%;
+                border: none;
+                border-radius: 3px;
+                padding: 10px 20px;
+              "
+              onclick="return validasi()"
+            id = "go">
+              Login</button
+            ><br />
+            <br />
+            <div align="center">
+              <a href="index.html"
+                ><button class="btn btn-danger">kembali</button></a
+              ><br /><br />
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
+    <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        doc,
+        updateDoc,
+        query,
+        where,
+      } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+
+      window.validasi = async function () {
+        var username = document.forms["myForm"]["username"].value;
+        var password = document.forms["myForm"]["password"].value;
+
+        const loginRef = collection(db, "login");
+
+        const q = query(loginRef, where("username", "==", "admin"));
+        const querySnapshot = await getDocs(q);
+
+        let user = {
+          username: "",
+          password: "",
+        };
+
+        // document
+        //   .getElementById("password")
+        //   .addEventListener("keyup", function (event) {
+        //     event.preventDefault();
+        //     if (event.keyCode === 13) {
+        //       document.getElementById("enterClick").click();
+        //     }
+        //   });
+
+        // function validasi() {
+        //   alert("Button code executed.");
+        // }
+        var go = document.getElementById("go");
+        var txt = document.getElementById("txt");
+
+        txt.addEventListener("keypress", function(event) {
+        event.preventDefault();
+        if (event.keyCode == 13)
+        go.click();
+          });
+
+        // if (querySnapshot.size == 1) {
+          // querySnapshot.forEach((doc) => {
+            // user.username = doc.data().username;
+            // user.password = doc.data().password;
+
+            // if (username == user.username && password == user.password) {
+              // window.location.href = "beranda.html";
+              // return true;
+            // } else {
+              // alert("Username atau password yang Anda masukan SALAH");
+              // return false;
+            // }
+          // });
+        // }
+      // };
+
+      // window.validasi = async function () {
+      //   var username = document.forms["myForm"]["username"].value;
+      //   var password = document.forms["myForm"]["password"].value;
+      //   // Create a reference to the cities collection
+      //   import {
+      //     collection,
+      //     query,
+      //     where,
+      //   } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      //   const loginRef = collection(db, "login");
+
+      //   // Create a query against the collection.
+      //   const q = query(loginRef, where("username", "==", username));
+
+      //   const querySnapshot = await getDocs(q);
+      //   querySnapshot.forEach((doc) => {
+      //     let login = doc.data();
+
+      //     document.getElementById("username").value = login.username;
+      //     document.getElementById("password").value = login.password;
+      //   });
+
+      //   if (username == "username" && password == "passwword") {
+      //     alert("Username dan password anda benar");
+      //     return true;
+      //   } else {
+      //     alert("Username atau password yang Anda masukan SALAH");
+      //     return false;
+      //   }
+      // };
+    </script>
   </body>
 </html>
