@@ -63,7 +63,12 @@
       <div class="container">
         <div class="row">
           <div class="col-sm bg-dark rounded text-light">
-            <form action="admin2.html" method="get" id="myForm">
+            <form
+              action="beranda.html"
+              onsubmit="return validasi()"
+              method="get"
+              id="myForm"
+            >
               <div class="text-center">
                 <h2>Admin Login</h2>
               </div>
@@ -90,6 +95,8 @@
             </form>
             <br />
             <button
+              type="submit"
+              role="search"
               id="enterClick"
               class="btn btn-primary"
               style="
@@ -103,8 +110,9 @@
               "
               onclick="return validasi()"
             >
-              Login</button
-            ><br />
+              Login
+            </button>
+            <br />
             <br />
             <div align="center">
               <a href="index.html"
@@ -149,6 +157,40 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
+      let input = document.getElementById("myForm");
+      input.addEventListener("keyup", async (event) => {
+        if (event.keyCode == 13) {
+          var username = document.forms["myForm"]["username"].value;
+          var password = document.forms["myForm"]["password"].value;
+
+          const loginRef = collection(db, "login");
+
+          const q = query(loginRef, where("username", "==", "admin"));
+          const querySnapshot = await getDocs(q);
+
+          let user = {
+            username: "",
+            password: "",
+          };
+
+          if (querySnapshot.size == 1) {
+            querySnapshot.forEach((doc) => {
+              user.username = doc.data().username;
+              user.password = doc.data().password;
+
+              if (username == user.username && password == user.password) {
+                window.location.href = "beranda.html";
+
+                // return true;
+              } else {
+                alert("Username atau password yang Anda masukan SALAH");
+                return false;
+              }
+            });
+          }
+        }
+      });
+
       window.validasi = async function () {
         var username = document.forms["myForm"]["username"].value;
         var password = document.forms["myForm"]["password"].value;
@@ -163,7 +205,6 @@
           password: "",
         };
 
-        var input = document.getElementById("");
         if (querySnapshot.size == 1) {
           querySnapshot.forEach((doc) => {
             user.username = doc.data().username;
@@ -179,37 +220,6 @@
           });
         }
       };
-
-      // window.validasi = async function () {
-      //   var username = document.forms["myForm"]["username"].value;
-      //   var password = document.forms["myForm"]["password"].value;
-      //   // Create a reference to the cities collection
-      //   import {
-      //     collection,
-      //     query,
-      //     where,
-      //   } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
-      //   const loginRef = collection(db, "login");
-
-      //   // Create a query against the collection.
-      //   const q = query(loginRef, where("username", "==", username));
-
-      //   const querySnapshot = await getDocs(q);
-      //   querySnapshot.forEach((doc) => {
-      //     let login = doc.data();
-
-      //     document.getElementById("username").value = login.username;
-      //     document.getElementById("password").value = login.password;
-      //   });
-
-      //   if (username == "username" && password == "passwword") {
-      //     alert("Username dan password anda benar");
-      //     return true;
-      //   } else {
-      //     alert("Username atau password yang Anda masukan SALAH");
-      //     return false;
-      //   }
-      // };
     </script>
   </body>
 </html>

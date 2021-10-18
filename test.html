@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="admin2.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+      
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    
+    
+    <link
+      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
+      rel="stylesheet"
+    />
+     <!-- CSS only -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
+      crossorigin="anonymous"
+    /></head
+  ><!-- JavaScript Bundle with Popper -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+  <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+      crossorigin="anonymous"
+    ></script>
+    <style>img{height: 100px; width: 100px; border: 1px solid black;}</style>
+  </head>
+  <body id="body-pd">
+    <header class="header" id="header">
+      <div class="header__toggle">
+        <i class="bx bx-menu" id="header-toggle"></i>
+      </div>
+     <h3 style="margin: auto;">Pengaturan Toko</h3>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+      <nav class="nav">
+        <div>
+          <a href="#" class="nav__logo">
+            <i class="bx bx-layer nav__logo-icon"></i>
+            <span class="nav__logo-name" >Admin</span>
+          </a>
+
+          <div class="nav__list">
+            <a href="beranda.html" class="nav__link ">
+              <i class="fa fa-home nav__logo-icon"></i>
+              <span class="nav__name">Beranda</span>
+            </a>
+
+            <a href="product.html" class="nav__link ">
+              <i class="fa fa-cube nav__logo-icon"></i>
+              <span class="nav__name">Product</span>
+            </a>
+
+            <a href="toko.html" class="nav__link active">
+              <i class="fa fa-shopping-basket nav__logo-icon"></i>
+              <span class="nav__name">Toko</span>
+            </a>
+            <a href="index.html" class="nav__link">
+              <i class="bx bx-log-out nav__icon"></i>
+              <span class="nav__name">Keluar</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+      <br />
+      <form class="form-horizontal">
+        <div class="form-group">
+          <label class="control-label col-sm-2" for="nama">Nama Toko:</label>
+          <div class="col-sm-10" id="NamaToko">
+            <input type="text" id="nama" class="form-control" />
+          </div>
+        </div>
+        <div class="form-group" id="LogoToko">
+          <label  class="control-label col-sm-2" for="nama">Logo Toko:</label>
+          <div class="mb-3">
+            <input class="form-control" type="file"  id="formFile">
+            <img id="images">
+          </div>
+         
+          <!-- <img src="" id="myimg" alt=""> <label for="" id="upProgress"></label><br>
+
+          <button id="pilih">Pilih Image</button>
+          <button id="upload">Upload Image</button>
+          <button id="ambil">Ambil Image</button> -->
+        </div>
+        
+      </form><br>
+       <a href="beranda.html"><button type="submit" class="btn btn-danger">Kembali</button></a>
+       <button type="button" class="btn btn-primary" onclick="updateToko()">Simpan</button></a>
+       </div> 
+
+      <script type="module">
+      // Import the functions you need from the SDKs you need
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+      import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+
+      // TODO: Add SDKs for Firebase products that you want to use
+      // https://firebase.google.com/docs/web/setup#available-libraries
+
+      // Your web app's Firebase configuration
+      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+      const firebaseConfig = {
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R"
+      };
+      // Initialize Firebase
+      const app = initializeApp(firebaseConfig);
+      const analytics = getAnalytics(app);
+      const db = getFirestore(app);
+
+      // var ImgUrl;
+      // var files = [];
+      // var reader = new FileReader();
+
+      // var input = document.getElementById('formFile');
+      // input.onchange = e => {
+      //   files = e.target.files;
+      //   reader = new FileReader();
+      //   reader.onload = function(){
+      //     document.getElementById("myImg").src = reader.result;
+      //   }
+      //   reader.readAsDataURL(files[0])
+      // } 
+
+      const querySnapshot = await getDocs(collection(db, "toko"));
+      querySnapshot.forEach((doc) => {
+        let toko = doc.data();
+        // document.getElementById('logo').value = toko.logo;
+        document.getElementById('nama').value = toko.nama;
+      });
+
+      window.updateToko = function () {
+        const tokoRef = doc(db, "toko", "SG8E66RCE27yxxNKGokL");
+
+        // Set the "capital" field of the city 'DC'
+        updateDoc(tokoRef, {
+          nama: document.getElementById("nama").value,
+          // logo: document.getElementById("logo").value
+        }).then(res => {
+          alert("Yeaayyy!!! Berhasil Merubah Data Toko.");
+        });
+      }
+      </script>
+    
+    <!--===== MAIN JS =====-->
+    <script src="main.js"></script>
+  </body>
+</html>
