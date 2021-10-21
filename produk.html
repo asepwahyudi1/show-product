@@ -40,7 +40,7 @@
     const querySnapshot = await getDocs(collection(db, "product"));
     querySnapshot.forEach((doc) => {
       var product = doc.data();
-      document.getElementById('gambarproduk').src = product.gambar[0];
+      // document.getElementById('gambarproduk').src = product.gambar[0];
       document.getElementById('namaProduk').innerHTML = product.nama;
       document.getElementById('hargaProduk').innerHTML = product.harga;
     });
@@ -214,7 +214,7 @@
         querySnapshot.forEach((doc) => {
           const task = doc.data();
           tasksContainer.innerHTML += `<div class="row" style="margin: 1%;">
-            <div class="col-sm" style="padding: 1%;"><img src="${task.gambar}" width="80%"></div>
+            <div class="col-sm" style="padding: 1%;"><img src="${task.gambar[0]}" width="80%"></div>
             <div class="col-sm" style="padding: 1%;"><h3 class="h4">${task.nama}</h3></div>
             <div class="col-sm" style="padding: 1%;"><h4>${task.harga}</h4></div>
             <div class="col-sm">
