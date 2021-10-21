@@ -1,126 +1,118 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Admin</title>
-    <link rel="stylesheet" href="admin2.css" />
-    <link rel="stylesheet" href="fontawesome/css/all.css" />
 
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="admin2.css" />
+  <link rel="stylesheet" href="fontawesome/css/all.css" />
 
-    <script type="module">
-      // Import the functions you need from the SDKs you need
-      import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
-      import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
-      import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
-      // TODO: Add SDKs for Firebase products that you want to use
-      // https://firebase.google.com/docs/web/setup#available-libraries
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
 
-      // Your web app's Firebase configuration
-      // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-      const firebaseConfig = {
-        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
-        authDomain: "show-product.firebaseapp.com",
-        projectId: "show-product",
-        storageBucket: "show-product.appspot.com",
-        messagingSenderId: "1097328728197",
-        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
-        measurementId: "G-27V5PMSV0R",
-      };
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
 
-      // Initialize Firebase
-      const app = initializeApp(firebaseConfig);
-      const analytics = getAnalytics(app);
-      const db = getFirestore(app);
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+      authDomain: "show-product.firebaseapp.com",
+      projectId: "show-product",
+      storageBucket: "show-product.appspot.com",
+      messagingSenderId: "1097328728197",
+      appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+      measurementId: "G-27V5PMSV0R",
+    };
 
-      const querySnapshot = await getDocs(collection(db, "product"));
-      querySnapshot.forEach((doc) => {
-        var product = doc.data();
-        document.getElementById('gambarproduk').src = product.gambar[0];
-          document.getElementById('namaProduk').innerHTML = product.nama;
-          document.getElementById('hargaProduk').innerHTML = product.harga;
-        });
-    </script>
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
 
-    <link
-      href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css"
-      rel="stylesheet"
-    />
-     <!-- CSS only -->
-     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU"
-      crossorigin="anonymous"
-    /></head
-  ><!-- JavaScript Bundle with Popper -->           
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
-  <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-      crossorigin="anonymous"
-    ></script>
-  </head>
-  <body id="body-pd">
-    <header class="header" id="header">
-      <div class="header__toggle">
-        <i class="bx bx-menu" id="header-toggle"></i>
-      </div>
-     <h1 style="margin-right: 35%;">Pengaturan Product</h1>
-    </header>
+    const querySnapshot = await getDocs(collection(db, "product"));
+    querySnapshot.forEach((doc) => {
+      var product = doc.data();
+      document.getElementById('gambarproduk').src = product.gambar[0];
+      document.getElementById('namaProduk').innerHTML = product.nama;
+      document.getElementById('hargaProduk').innerHTML = product.harga;
+    });
+  </script>
 
-    <div class="l-navbar" id="nav-bar">
-      <nav class="nav">
-        <div>
-          <a href="#" class="nav__logo">
-            <i class="bx bx-layer nav__logo-icon"></i>
-            <span class="nav__logo-name">Admin</span>
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+</head><!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+
+<body id="body-pd">
+  <header class="header" id="header">
+    <div class="header__toggle">
+      <i class="bx bx-menu" id="header-toggle"></i>
+    </div>
+    <h1 style="margin-right: 35%;">Pengaturan Product</h1>
+  </header>
+
+  <div class="l-navbar" id="nav-bar">
+    <nav class="nav">
+      <div>
+        <a href="#" class="nav__logo">
+          <i class="bx bx-layer nav__logo-icon"></i>
+          <span class="nav__logo-name">Admin</span>
+        </a>
+
+        <div class="nav__list">
+          <a href="beranda.html" class="nav__link ">
+            <i class="fa fa-home nav__logo-icon"></i>
+            <span class="nav__name">Beranda</span>
           </a>
 
-          <div class="nav__list">
-            <a href="beranda.html" class="nav__link ">
-              <i class="fa fa-home nav__logo-icon"></i>
-              <span class="nav__name">Beranda</span>
-            </a>
+          <a href=".html" class="nav__link active">
+            <i class="fa fa-cube nav__logo-icon"></i>
+            <span class="nav__name">Product</span>
+          </a>
 
-            <a href=".html" class="nav__link active">
-              <i class="fa fa-cube nav__logo-icon"></i>
-              <span class="nav__name">Product</span>
-            </a>
-
-            <a href="toko.html" class="nav__link">
-              <i class="fa fa-shopping-basket nav__logo-icon"></i>
-              <span class="nav__name">Toko</span>
-            </a>
-            <a href="index.html" class="nav__link">
-              <i class="bx bx-log-out nav__icon"></i>
-              <span class="nav__name">Keluar</span>
-            </a>
-          </div>
+          <a href="toko.html" class="nav__link">
+            <i class="fa fa-shopping-basket nav__logo-icon"></i>
+            <span class="nav__name">Toko</span>
+          </a>
+          <a href="index.html" class="nav__link">
+            <i class="bx bx-log-out nav__icon"></i>
+            <span class="nav__name">Keluar</span>
+          </a>
         </div>
-      </nav>
-    </div>
-    <br>
-    <br>
-    <br>
-    <div class="row" style="padding-top: 4%; padding-left: 10%">
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm"></div>
-      <div class="col-sm">
-        <button class="btn btn-primary"  onclick="location.href='gefdhgf.html'">
-          <h5>Tambahkan</h5>
-        </button>
       </div>
+    </nav>
+  </div>
+  <br>
+  <br>
+  <br>
+  <div class="row" style="padding-top: 4%; padding-left: 10%">
+    <div class="col-sm"></div>
+    <div class="col-sm"></div>
+    <div class="col-sm"></div>
+    <div class="col-sm">
+      <button class="btn btn-primary" onclick="location.href='gefdhgf.html'">
+        <h5>Tambahkan</h5>
+      </button>
     </div>
+  </div>
 
-    <div class="container p-4">
-      <!-- /////////////////////////////////////////jangan di hapus /////////////////////////////////// -->
-      <!-- <div class="card">
+  <div class="container p-4">
+    <!-- <div class="card">
       <div class="card-body">
         <h1 class="h4">Add Task</h1>
         
@@ -140,80 +132,88 @@
             </form>
           </div>
         </div> -->
-      <!-- Tasks List -->
-      <div class="col-md-12">
-        <div class="row" style="margin: 1%">
-          <div class="col-sm" style="border-bottom: solid"><h3>Gambar</h3></div>
-          <div class="col-sm" style="border-bottom: solid"><h3>Nama</h3></div>
-          <div class="col-sm" style="border-bottom: solid"><h3>Harga</h3></div>
-          <div class="col-sm" style="border-bottom: solid"><h3>Aksi</h3></div>
+    <!-- Tasks List -->
+    <div class="col-md-12">
+      <div class="row" style="margin: 1%">
+        <div class="col-sm" style="border-bottom: solid">
+          <h3>Gambar</h3>
+        </div>
+        <div class="col-sm" style="border-bottom: solid">
+          <h3>Nama</h3>
+        </div>
+        <div class="col-sm" style="border-bottom: solid">
+          <h3>Harga</h3>
+        </div>
+        <div class="col-sm" style="border-bottom: solid">
+          <h3>Aksi</h3>
         </div>
       </div>
-      <div class="col-md-12" id="tasks-container"></div>
     </div>
+    <div class="col-md-12" id="tasks-container"></div>
+  </div>
 
-    <!-- FIREBASE -->
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+  <!-- FIREBASE -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
 
-    <!-- TODO: Add SDKs for Firebase products that you want to use
+  <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
-    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
 
-    <script>
-      // Your web app's Firebase configuration
-      var firebaseConfig = {
-        // PUT YOUR CREDENTIALS HERE
-        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
-        authDomain: "show-product.firebaseapp.com",
-        projectId: "show-product",
-        storageBucket: "show-product.appspot.com",
-        messagingSenderId: "1097328728197",
-        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
-        measurementId: "G-27V5PMSV0R",
-      };
-      // Initialize Firebase
-      firebase.initializeApp(firebaseConfig);
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      // PUT YOUR CREDENTIALS HERE
+      apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+      authDomain: "show-product.firebaseapp.com",
+      projectId: "show-product",
+      storageBucket: "show-product.appspot.com",
+      messagingSenderId: "1097328728197",
+      appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+      measurementId: "G-27V5PMSV0R",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
 
-      const db = firebase.firestore();
+    const db = firebase.firestore();
 
-      const taskForm = document.getElementById("task-form");
-      const tasksContainer = document.getElementById("tasks-container");
+    const taskForm = document.getElementById("task-form");
+    const tasksContainer = document.getElementById("tasks-container");
 
-      let editStatus = false;
-      let id = "";
+    let editStatus = false;
+    let id = "";
 
-      /**
-       * Save a New Task in Firestore
-       * @param {string} title the title of the Task
-       * @param {string} description the description of the Task
-       */
-      const saveTask = (gambar, nama, harga) =>
-        db.collection("product").doc().set({
-          gambar,
-          nama,
-          harga,
-        });
+    /**
+     * Save a New Task in Firestore
+     * @param {string} title the title of the Task
+     * @param {string} description the description of the Task
+     */
+    const saveTask = (gambar, nama, harga) =>
+      db.collection("product").doc().set({
+        gambar,
+        nama,
+        harga,
+      });
 
-      const getTasks = () => db.collection("product").get();
+    const getTasks = () => db.collection("product").get();
 
-      const onGetTasks = (callback) =>
-        db.collection("product").onSnapshot(callback);
+    const onGetTasks = (callback) =>
+      db.collection("product").onSnapshot(callback);
 
-      const deleteTask = (id) => db.collection("product").doc(id).delete();
+    const deleteTask = (id) => db.collection("product").doc(id).delete();
 
-      const getTask = (id) => db.collection("product").doc(id).get();
+    const getTask = (id) => db.collection("product").doc(id).get();
 
-      const updateTask = (id, updatedTask) =>
-        db.collection("product").doc(id).update(updatedTask);
+    const updateTask = (id, updatedTask) =>
+      db.collection("product").doc(id).update(updatedTask);
 
-      window.addEventListener("DOMContentLoaded", async (e) => {
-        onGetTasks((querySnapshot) => {
-          tasksContainer.innerHTML = "";
+    window.addEventListener("DOMContentLoaded", async (e) => {
+      onGetTasks((querySnapshot) => {
+        tasksContainer.innerHTML = "";
 
-          querySnapshot.forEach((doc) => {
-            const task = doc.data();
-            tasksContainer.innerHTML += `<div class="row" style="margin: 1%;">
+        querySnapshot.forEach((doc) => {
+          const task = doc.data();
+          tasksContainer.innerHTML += `<div class="row" style="margin: 1%;">
             <div class="col-sm" style="padding: 1%;"><img src="${task.gambar}" width="80%"></div>
             <div class="col-sm" style="padding: 1%;"><h3 class="h4">${task.nama}</h3></div>
             <div class="col-sm" style="padding: 1%;"><h4>${task.harga}</h4></div>
@@ -226,84 +226,85 @@
             </button>
             </div>
   </div>`;
-          });
+        });
 
-          ////////////////////hasil akhir jangan di hapus ////////////////////////////////////////////
+        ////////////////////hasil akhir jangan di hapus ////////////////////////////////////////////
 
-          //     tasksContainer.innerHTML += `<div class="card card-body mt-2 border-primary">
-          //   <h3 class="6">${task.title}</h3>
-          //   <p>${task.description}</p>
-          //   <div>
-          //     <button class="btn btn-primary btn-delete" data-id="${doc.id}">
-          //       Hapus
-          //     </button>
-          //     <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
-          //       Edit
-          //     </button>
-          //   </div>
-          // </div>`;
-          //   });
+        //     tasksContainer.innerHTML += `<div class="card card-body mt-2 border-primary">
+        //   <h3 class="6">${task.title}</h3>
+        //   <p>${task.description}</p>
+        //   <div>
+        //     <button class="btn btn-primary btn-delete" data-id="${doc.id}">
+        //       Hapus
+        //     </button>
+        //     <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+        //       Edit
+        //     </button>
+        //   </div>
+        // </div>`;
+        //   });
 
-          const btnsDelete = tasksContainer.querySelectorAll(".btn-delete");
-          btnsDelete.forEach((btn) =>
-            btn.addEventListener("click", async (e) => {
-              console.log(e.target.dataset.id);
-              try {
-                await deleteTask(e.target.dataset.id);
-              } catch (error) {
-                console.log(error);
-              }
-            })
-          );
+        const btnsDelete = tasksContainer.querySelectorAll(".btn-delete");
+        btnsDelete.forEach((btn) =>
+          btn.addEventListener("click", async (e) => {
+            console.log(e.target.dataset.id);
+            try {
+              await deleteTask(e.target.dataset.id);
+            } catch (error) {
+              console.log(error);
+            }
+          })
+        );
 
-          const btnsEdit = tasksContainer.querySelectorAll(".btn-edit");
-          btnsEdit.forEach((btn) => {
-            btn.addEventListener("click", async (e) => {
-              try {
-                const doc = await getTask(e.target.dataset.id);
-                const task = doc.data();
-                taskForm["task-gambar"].value = task.gambar;
-                taskForm["task-nama"].value = task.nama;
-                taskForm["task-harga"].value = task.harga;
+        const btnsEdit = tasksContainer.querySelectorAll(".btn-edit");
+        btnsEdit.forEach((btn) => {
+          btn.addEventListener("click", async (e) => {
+            try {
+              const doc = await getTask(e.target.dataset.id);
+              const task = doc.data();
+              taskForm["task-gambar"].value = task.gambar;
+              taskForm["task-nama"].value = task.nama;
+              taskForm["task-harga"].value = task.harga;
 
-                editStatus = true;
-                id = doc.id;
-                taskForm["btn-task-form"].innerText = "Update";
-              } catch (error) {
-                console.log(error);
-              }
-            });
+              editStatus = true;
+              id = doc.id;
+              taskForm["btn-task-form"].innerText = "Update";
+            } catch (error) {
+              console.log(error);
+            }
           });
         });
       });
+    });
 
-      taskForm.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const gambar = taskForm["task-gambar"];
-        const nama = taskForm["task-nama"];
-        const harga = taskForm["task-harga"];
+    taskForm.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const gambar = taskForm["task-gambar"];
+      const nama = taskForm["task-nama"];
+      const harga = taskForm["task-harga"];
 
-        try {
-          if (!editStatus) {
-            await saveTask(gambar.value, nama.value, harga.value);
-          } else {
-            await updateTask(id, {
-              gambar: gambar.value,
-              nama: nama.value,
-              harga: harga.value,
-            });
+      try {
+        if (!editStatus) {
+          await saveTask(gambar.value, nama.value, harga.value);
+        } else {
+          await updateTask(id, {
+            gambar: gambar.value,
+            nama: nama.value,
+            harga: harga.value,
+          });
 
-            editStatus = false;
-            id = "";
-            taskForm["btn-task-form"].innerText = "Save";
-          }
-
-          taskForm.reset();
-          nama.focus();
-        } catch (error) {
-          console.log(error);
+          editStatus = false;
+          id = "";
+          taskForm["btn-task-form"].innerText = "Save";
         }
-      });
-    </script>
-  </body>
+
+        taskForm.reset();
+        nama.focus();
+      } catch (error) {
+        console.log(error);
+      }
+    });
+  </script>
+</body>
+
 </html>
