@@ -90,16 +90,9 @@
         <div class="form-group" id="LogoToko">
           <label  class="control-label col-sm-2" for="nama">Logo Toko:</label>
           <div class="mb-3">
-              <label for="" id="UpProgress"></label><br>
-              Nama <input type="text" name="" id="namebox"><br>
-              <br>
-            <input class="form-control" type="file"  id="select"><br>
-            <img id="myImg">
+            <input class="form-control" type="file"  id="formFile">
+            <img id="images">
           </div>
-         
-           <button id="upload">Upload Image</button>
-          <button id="ambil">Ambil Image</button> 
-        </div>
          
           <!-- <img src="" id="myimg" alt=""> <label for="" id="upProgress"></label><br>
 
@@ -113,14 +106,7 @@
        <button type="button" class="btn btn-primary" onclick="updateToko()">Simpan</button></a>
        </div> 
 
-
-       <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-app.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-auth.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-firestore.js"></script>
-       <script src="https://www.gstatic.com/firebasejs/7.15.5/firebase-storage.js"></script>
-
-
-      <script type="module" id="MainScript">
+      <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
       import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
@@ -145,46 +131,20 @@
       const analytics = getAnalytics(app);
       const db = getFirestore(app);
 
-      var ImgName,ImgUrl;
-      var files = [];
-      var reader; 
+      // var ImgUrl;
+      // var files = [];
+      // var reader = new FileReader();
 
-      var input = document.getElementById('select');
-      input.onchange = e => {
-        files = e.target.files;
-        reader = new FileReader();
-        reader.onload = function(){
-          document.getElementById("myImg").src = reader.result;
-        }
-        reader.readAsDataURL(files[0])
-      } 
+      // var input = document.getElementById('formFile');
+      // input.onchange = e => {
+      //   files = e.target.files;
+      //   reader = new FileReader();
+      //   reader.onload = function(){
+      //     document.getElementById("myImg").src = reader.result;
+      //   }
+      //   reader.readAsDataURL(files[0])
+      // } 
 
-      document.getElementById('upload').onclick = function(){
-          ImgName = document.getElementById('namebox').value;
-          var uploadTask = firebase.storage().ref('Images/'+ImgName+".png").put(files[0]);
-
-          uploadTask.on('state_changed', function(snapshot){
-              var progress = (snapshot.bytesTranferred / snapshot.totalBytes) * 100;
-              document.getElementById('UpProgress').innerHTML = 'Upload'+progress+'%';
-          },
-            //err//
-          function(error){
-              alert('error saving image')
-          },
-          //submit//
-          function(){
-              uploadTask.snapshot.ref.getDownloadURL().then(function(url){
-                  ImgUrl = url;
-              
-                firebase.database().ref('Pictures/'+ImgName).set({
-                    Name: ImgName,
-                    Link: ImgUrl
-                });
-                alert('image added successfully')
-            }
-          );
-          });
-      }
       const querySnapshot = await getDocs(collection(db, "toko"));
       querySnapshot.forEach((doc) => {
         let toko = doc.data();

@@ -7,6 +7,7 @@
     <title>Admin</title>
     <link rel="stylesheet" href="admin2.css" />
     <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <script src="ckeditor/ckeditor.js"></script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -30,6 +31,7 @@
       integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
       crossorigin="anonymous"
     ></script>
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
   </head>
   <body id="body-pd">
     <header class="header" id="header">
@@ -104,6 +106,7 @@
                   <div class="form-group">
                     <label for="exampleFormControlTextarea1">Deskripsi:</label>
                     <textarea class="form-control" id="deskripsi" rows="3"></textarea>
+             
                   </div>
                 </form>
                 <label for="basic-url">Gambar:</label>
@@ -154,8 +157,6 @@
       </form>
     </div>
         
-
-    
     <script type="module">
       // Import the functions you need from the SDKs you need
       import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
@@ -223,25 +224,25 @@
         });
       }
       
-      var ImgUrl;
-      var files = [];
-      var reader = new FileReader();
+      // var ImgUrl;
+      // var files = [];
+      // var reader = new FileReader();
 
-      var input = document.getElementById('formFile1');
-      var input = document.getElementById('formFile2');
-      var input = document.getElementById('formFile3');
-      var input = document.getElementById('formFile4');
-      input.onchange = e => {
-        files = e.target.files;
-        reader = new FileReader();
-        reader.onload = function(){
-          document.getElementById("myImg1").src = reader.result;
-          document.getElementById("myImg2").src = reader.result;
-          document.getElementById("myImg3").src = reader.result;
-          document.getElementById("myImg4").src = reader.result;
-        }
-        reader.readAsDataURL(files[0])
-      } 
+      // var input = document.getElementById('formFile1');
+      // var input = document.getElementById('formFile2');
+      // var input = document.getElementById('formFile3');
+      // var input = document.getElementById('formFile4');
+      // input.onchange = e => {
+      //   files = e.target.files;
+      //   reader = new FileReader();
+      //   reader.onload = function(){
+      //     document.getElementById("myImg1").src = reader.result;
+      //     document.getElementById("myImg2").src = reader.result;
+      //     document.getElementById("myImg3").src = reader.result;
+      //     document.getElementById("myImg4").src = reader.result;
+      //   }
+      //   reader.readAsDataURL(files[0])
+      // } 
       
     </script>
 
