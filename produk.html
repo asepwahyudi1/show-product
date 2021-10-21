@@ -87,7 +87,7 @@
               <span class="nav__name">Beranda</span>
             </a>
 
-            <a href="product.html" class="nav__link active">
+            <a href=".html" class="nav__link active">
               <i class="fa fa-cube nav__logo-icon"></i>
               <span class="nav__name">Product</span>
             </a>
@@ -107,31 +107,203 @@
     <br>
     <br>
     <br>
-      <button style="float: right; margin-right: 10%;" class="btn btn-primary">tambah</button>
-    <br>
-    <br>
-    <br>
-    <div class="container">
-   
-      <div class="row" style="border: solid;">
-        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Gambar</h4></div>
-        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Nama</h4></div>
-        <div class="col" style="background-color: cornflowerblue; border-right:solid; border-bottom:solid; "><h4>Harga</h4></div>
-        <div class="col" style="background-color: cornflowerblue; border-bottom:solid; "><h4>Aksi</h4></div>
-        <div class="row" style="margin: 0px;">
-          <div class="col"><img id="gambarproduk" width="80%"></div>
-          <div class="col"><h5 id="namaProduk"></h5></div>
-          <div class="col"><h4 id="hargaProduk"></h4></div>
-          <div class="col"> <button type="button" style="margin: 1%;" class="btn btn-warning">edit</button><button type="button" class="btn btn-danger">Delete</button></div>
-        </div>
-        <div class="row" style="margin: 0px;">
-          <div class="col"><img src="bg.jpg" width="100%"></div>
-          <div class="col">leptop</div>
-          <div class="col">10000</div>
-          <div class="col"> <button type="button" style="margin: 1%;" class="btn btn-warning">edit</button><button type="button" class="btn btn-danger">Delete</button></div>
-        
-        </div>
-     
+    <div class="row" style="padding-top: 4%; padding-left: 10%">
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm"></div>
+      <div class="col-sm">
+        <button class="btn btn-primary" onclick="location.href='gefdhgf.html'">
+          <h5>Tambahkan</h5>
+        </button>
       </div>
+    </div>
+
+    <div class="container p-4">
+      <!-- /////////////////////////////////////////jangan di hapus /////////////////////////////////// -->
+      <!-- <div class="card">
+      <div class="card-body">
+        <h1 class="h4">Add Task</h1>
+        
+        <form id="task-form">
+          <div class="form-group">
+            <input type="text" id="task-nama" class="form-control" class="Task nama" placeholder="Task nama"
+            autofocus>
+          </div>
+          <div class="form-group">
+            <textarea id="task-harga" rows="3" class="form-control" placeholder="Task harga"></textarea>
+          </div>
+          
+          <button class="btn btn-primary" id="btn-task-form">
+            Save
+              </button>
+              
+            </form>
+          </div>
+        </div> -->
+      <!-- Tasks List -->
+      <div class="col-md-12">
+        <div class="row" style="margin: 1%">
+          <div class="col-sm" style="border-bottom: solid"><h3>Gambar</h3></div>
+          <div class="col-sm" style="border-bottom: solid"><h3>Nama</h3></div>
+          <div class="col-sm" style="border-bottom: solid"><h3>Harga</h3></div>
+          <div class="col-sm" style="border-bottom: solid"><h3>Aksi</h3></div>
+        </div>
+      </div>
+      <div class="col-md-12" id="tasks-container"></div>
+    </div>
+
+    <!-- FIREBASE -->
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+
+    <script>
+      // Your web app's Firebase configuration
+      var firebaseConfig = {
+        // PUT YOUR CREDENTIALS HERE
+        apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+        authDomain: "show-product.firebaseapp.com",
+        projectId: "show-product",
+        storageBucket: "show-product.appspot.com",
+        messagingSenderId: "1097328728197",
+        appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+        measurementId: "G-27V5PMSV0R",
+      };
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      const db = firebase.firestore();
+
+      const taskForm = document.getElementById("task-form");
+      const tasksContainer = document.getElementById("tasks-container");
+
+      let editStatus = false;
+      let id = "";
+
+      /**
+       * Save a New Task in Firestore
+       * @param {string} title the title of the Task
+       * @param {string} description the description of the Task
+       */
+      const saveTask = (gambar, nama, harga) =>
+        db.collection("product").doc().set({
+          gambar,
+          nama,
+          harga,
+        });
+
+      const getTasks = () => db.collection("product").get();
+
+      const onGetTasks = (callback) =>
+        db.collection("product").onSnapshot(callback);
+
+      const deleteTask = (id) => db.collection("product").doc(id).delete();
+
+      const getTask = (id) => db.collection("product").doc(id).get();
+
+      const updateTask = (id, updatedTask) =>
+        db.collection("product").doc(id).update(updatedTask);
+
+      window.addEventListener("DOMContentLoaded", async (e) => {
+        onGetTasks((querySnapshot) => {
+          tasksContainer.innerHTML = "";
+
+          querySnapshot.forEach((doc) => {
+            const task = doc.data();
+            tasksContainer.innerHTML += `<div class="row" style="margin: 1%;">
+            <div class="col-sm" style="padding: 1%;"><img src="${task.gambar}" width="80%"></div>
+            <div class="col-sm" style="padding: 1%;"><h3 class="h4">${task.nama}</h3></div>
+            <div class="col-sm" style="padding: 1%;"><h4>${task.harga}</h4></div>
+            <div class="col-sm">
+            <button class="btn btn-danger btn-delete" data-id="${doc.id}">
+                Hapus
+            </button>
+            <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+                Edit
+            </button>
+            </div>
+  </div>`;
+          });
+
+          ////////////////////hasil akhir jangan di hapus ////////////////////////////////////////////
+
+          //     tasksContainer.innerHTML += `<div class="card card-body mt-2 border-primary">
+          //   <h3 class="6">${task.title}</h3>
+          //   <p>${task.description}</p>
+          //   <div>
+          //     <button class="btn btn-primary btn-delete" data-id="${doc.id}">
+          //       Hapus
+          //     </button>
+          //     <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+          //       Edit
+          //     </button>
+          //   </div>
+          // </div>`;
+          //   });
+
+          const btnsDelete = tasksContainer.querySelectorAll(".btn-delete");
+          btnsDelete.forEach((btn) =>
+            btn.addEventListener("click", async (e) => {
+              console.log(e.target.dataset.id);
+              try {
+                await deleteTask(e.target.dataset.id);
+              } catch (error) {
+                console.log(error);
+              }
+            })
+          );
+
+          const btnsEdit = tasksContainer.querySelectorAll(".btn-edit");
+          btnsEdit.forEach((btn) => {
+            btn.addEventListener("click", async (e) => {
+              try {
+                const doc = await getTask(e.target.dataset.id);
+                const task = doc.data();
+                taskForm["task-gambar"].value = task.gambar;
+                taskForm["task-nama"].value = task.nama;
+                taskForm["task-harga"].value = task.harga;
+
+                editStatus = true;
+                id = doc.id;
+                taskForm["btn-task-form"].innerText = "Update";
+              } catch (error) {
+                console.log(error);
+              }
+            });
+          });
+        });
+      });
+
+      taskForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const gambar = taskForm["task-gambar"];
+        const nama = taskForm["task-nama"];
+        const harga = taskForm["task-harga"];
+
+        try {
+          if (!editStatus) {
+            await saveTask(gambar.value, nama.value, harga.value);
+          } else {
+            await updateTask(id, {
+              gambar: gambar.value,
+              nama: nama.value,
+              harga: harga.value,
+            });
+
+            editStatus = false;
+            id = "";
+            taskForm["btn-task-form"].innerText = "Save";
+          }
+
+          taskForm.reset();
+          nama.focus();
+        } catch (error) {
+          console.log(error);
+        }
+      });
+    </script>
   </body>
 </html>
