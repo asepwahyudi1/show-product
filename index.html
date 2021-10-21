@@ -58,11 +58,11 @@
         document.getElementById('gambarproduk2').src = product.gambar[1];
         document.getElementById('gambarproduk3').src = product.gambar[2];
         document.getElementById('gambarproduk4').src = product.gambar[3];
-
         document.getElementById('indicator-gambarproduk1').src = product.gambar[0];
-document.getElementById('indicator-gambarproduk2').src = product.gambar[1];
-document.getElementById('indicator-gambarproduk3').src = product.gambar[2];
-document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
+        document.getElementById('indicator-gambarproduk2').src = product.gambar[1];
+        document.getElementById('indicator-gambarproduk3').src = product.gambar[2];
+        document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
+        document.getElementById('abc').href = "https://wa.me/6282119646486?text=saya ingin membeli%20" + product.nama + "%20ini";
       });
       
        const querytoko = await getDocs(collection(db, "toko"));
@@ -135,6 +135,7 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
                 </div>
                 <!-- class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" -->
 <a href="" id="abc"><button type="button" onclick="myFunction()" class="tombolbeli">
+  <!-- href="https://wa.me/6282119646486?text=Saya Tertarik Dengan Produk Yang Anda Jual -->
   Beli Sekarang
 </button></a>
 <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -150,12 +151,6 @@ document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
         <a href="" id="abc" type="button" class="btn btn-primary" >Beli</a> -->
-        <script>
-          function myFunction() {
-            var val = data.val();
-            document.getElementById("abc").href="https://wa.me/6282119646486?text=" + namaProduct[i];
-          }		
-          </script>
       </div>
     </div>
   </div>

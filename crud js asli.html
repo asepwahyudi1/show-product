@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.4/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
     <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/7.6.1/firebase-firestore.js"></script>
@@ -48,12 +49,12 @@
             </div>
 
             <div class="form-group">
-              <label for="">Deskripsi</label>
+              <label for="">Harga</label>
               <input
                 type="text"
-                placeholder="deskripsi"
+                placeholder="Harga"
                 class="form-control"
-                id="description"
+                id="Harga"
               />
             </div>
             <br />
@@ -105,18 +106,18 @@
 
       document.getElementById("form").addEventListener("submit", (e) => {
         var task = document.getElementById("task").value;
-        var description = document.getElementById("description").value;
+        var Harga = document.getElementById("Harga").value;
         e.preventDefault();
-        createTask(task, description);
+        createTask(task, Harga);
         form.reset();
       });
 
-      function createTask(taskName, description) {
+      function createTask(taskName, Harga) {
         var task = {
           task: taskName,
-          description: description,
+          Harga: Harga,
         };
-        let db = firebase.firestore().collection("product/");
+        let db = firebase.firestore().collection("Tambah/");
         db.add(task).then(() => {
           Swal.fire("Kerja Bagus!", "Task Added!", "Sukses");
           document.getElementById("cardSection").innerHTML = "";
@@ -127,7 +128,7 @@
       function readTask() {
         firebase
           .firestore()
-          .collection("product")
+          .collection("Tambah")
           .onSnapshot(function (snapshot) {
             document.getElementById("cardSection").innerHTML = "";
             snapshot.forEach(function (taskValue) {
@@ -138,8 +139,8 @@
                         <p class="card-text">${taskValue.data().harga}</p>
                         <button type="submit" color:white; class="btn btn-warning" onclick="updateTask('${
                           taskValue.id
-                        }','${taskValue.data().task}','${
-                taskValue.data().description
+                        }','${taskValue.data().nama}','${
+                taskValue.data().harga
               }')">
                         <i class="fas fa-edit"></i>Edit Task
                         </button>
@@ -153,6 +154,8 @@
             });
           });
       }
+
+
 
       function reset() {
         document.getElementById("firstSection").innerHTML = `
@@ -168,12 +171,12 @@
             </div>
 
             <div class="form-group">
-              <label for="">Deskripsi</label>
+              <label for="">Harga</label>
               <input
                 type="text"
-                placeholder="deskripsi"
+                placeholder="Harga"
                 class="form-control"
-                id="description"
+                id="Harga"
               />
             </div>
 
@@ -190,14 +193,14 @@
 
         document.getElementById("form").addEventListener("submit", (e) => {
           var task = document.getElementById("task").value;
-          var description = document.getElementById("description").value;
-          var description = document.getElementById("description").value;
+          var Harga = document.getElementById("Harga").value;
+          var Harga = document.getElementById("Harga").value;
           e.preventDefault();
-          createTask(task, description);
+          createTask(task, Harga);
           form.reset();
         });
       }
-      function updateTask(id, name, description) {
+      function updateTask(id, name, Harga) {
         document.getElementById("firstSection").innerHTML = `
           <form action="" id="form2" class="border p-4 mb-4">
             <div class="form-group">
@@ -211,12 +214,12 @@
             </div>
 
             <div class="form-group">
-              <label for="">Deskripsi</label>
+              <label for="">Harga</label>
               <input
                 type="text"
-                placeholder="deskripsi"
+                placeholder="Harga"
                 class="form-control"
-                id="description"
+                id="Harga"
               />
             </div>
 
@@ -244,19 +247,19 @@
             updateTask2(
               id,
               document.getElementById("task").value,
-              document.getElementById("description").value
+              document.getElementById("Harga").value
             );
           });
         document.getElementById("task").value = name;
-        document.getElementById("description").value = description;
+        document.getElementById("Harga").value = Harga;
       }
 
-      function updateTask2(id, name, description) {
+      function updateTask2(id, name, Harga) {
         var taskUpdated = {
           task: name,
-          description: description,
+          Harga: Harga,
         };
-        let db = firebase.firestore().collection("product").doc(id);
+        let db = firebase.firestore().collection("Tambah").doc(id);
         db.set(taskUpdated).then(() => {
           Swal.fire("Kerja Bagus!", "Task update!", "Sukses");
         });
@@ -265,29 +268,19 @@
         readTask();
         reset();
       }
-    //   function deleteTask(id) {
-    //     firebase
-    //       .firestore()
-    //       .collection("product")
-    //       .doc(id)
-    //       .delete()
-    //       .then(() => {
-    //         Swal.fire("Kerja Bagus!", "Task removed!", "Sukses");
-    //       });
-    //     reset();
-    //     document.getElementById("cardSection").innerHTML = "";
-    //     readTask();
-    //   }
-    
-    function deleteTask() {
-        firebase.database().ref("product/"+ModRoll.value).remove().then(
-            function(){
-                alert("record was delected");
-                Select_AllData();
-                $("#exampleModalCenter").modal('hide');
-            }
-        )
-    }
+      function deleteTask(id) {
+        firebase
+          .firestore()
+          .collection("Tambah")
+          .doc(id)
+          .delete()
+          .then(() => {
+            Swal.fire("Kerja Bagus!", "Task removed!", "Sukses");
+          });
+        reset();
+        document.getElementById("cardSection").innerHTML = "";
+        readTask();
+      }
     </script>
   </body>
 </html>

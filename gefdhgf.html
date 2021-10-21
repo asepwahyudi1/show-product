@@ -200,7 +200,9 @@
         // document.getElementById('url2').value = product.gambar[1];
         // document.getElementById('url3').value = product.gambar[2];
         // document.getElementById('url4').value = product.gambar[3];
-      });
+        CKEDITOR.replace('deskripsi');
+          }
+      );
 
       window.updateProduct = function () {
         const productRef = doc(db, "product", "HvRUgYlONyxEjgb4mUkI");
@@ -212,7 +214,8 @@
           rating: document.getElementById("rating").value,
           harga: document.getElementById("harga").value,
           pengirim: document.getElementById("pengirim").value,
-          deskripsi: document.getElementById("deskripsi").value,
+          deskripsi: CKEDITOR.instances.deskripsi.getData()
+          // deskripsi: document.getElementById("deskripsi").value,
           // gambar: [
           //     document.getElementById("url1").value,
           //     document.getElementById("url2").value,
@@ -249,8 +252,5 @@
 
     <!--===== MAIN JS =====-->
     <script src="main.js"></script>
-    <script>
-        CKEDITOR.replace('deskripsi')
-    </script>
   </body>
 </html>
