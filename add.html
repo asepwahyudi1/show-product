@@ -75,11 +75,11 @@
       <label for="">Rating:</label> <input type="text" id="Ratingbox"><br><hr>
       <label for="">Harga:</label> <input type="text" id="Hargabox"><br><hr>
       <label for="">Alamat Pengiriman:</label> <input type="text" id="Pengirimanbox"><br><hr>
-      <label for="">Deskripsi:</label> <input type="text" id="Deskripsibox"><br><hr>
+      <label for="">Deskripsi:</label> <input type="text" class="ckeditor" id="deskripsi"><br><hr>
       <hr>
 
-      <button id="Insbtn" class="btn btn-primary">Submit</button>
-      <button class="btn btn-warning" onclick="location.href='example.html'">Kembali</button>
+      <button id="Insbtn">Submit</button>
+      <button onclick="location.href='COBA2.html'">Kembali</button>
 
     <script type="module">
       // Import the functions you need from the SDKs you need
@@ -110,7 +110,11 @@
       let Ratingbox = document.getElementById("Ratingbox");
       let Hargabox = document.getElementById("Hargabox");
       let Pengirimanbox = document.getElementById("Pengirimanbox");
+<<<<<<< HEAD
       let Deskripsibox = document.getElementById("Deskripsibox");
+=======
+      let Deskripsibox = document.getElementById("deskripsi");
+>>>>>>> 7ef6898e147e2a1bfa04af4cd2d39a6ecb3505d7
       let Submit = document.getElementById("Insbtn");
 
     //   add doc
@@ -128,7 +132,11 @@
         )
         .then(()=>{
             alert("data berhasil ditambahkan");
+<<<<<<< HEAD
             window.location.href="example.html"
+=======
+            window.location.href="COBA2.html"
+>>>>>>> 7ef6898e147e2a1bfa04af4cd2d39a6ecb3505d7
         })
         .catch((error)=>{
             alert("data error:"+error);
@@ -137,5 +145,13 @@
     }
     Submit.addEventListener("click", AddDocument_AutoID)
     </script>
+<<<<<<< HEAD
   </body>
 </html>
+=======
+    <script>
+        CKEDITOR.replace('deskripsi')
+    </script>
+  </body>
+</html>
+>>>>>>> 7ef6898e147e2a1bfa04af4cd2d39a6ecb3505d7

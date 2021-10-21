@@ -7,6 +7,11 @@
     <title>show-product</title>
     <link rel="stylesheet" href="fontawesome/css/all.css">
     <link rel="stylesheet" href="index.css">
+    <script src=>
+      // function WA() {
+        // Document.getElementById('demo').innerHTML = '<a herf="https://wa.me/6281355538777?text=Saya"></a>'
+      // }
+    </script>
 
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
@@ -37,13 +42,13 @@
       const db = getFirestore(app);
       let bintang = '<h6 class="fas fa-star"></h6>';
       
-      const querySnapshot = await getDocs(collection(db, "Product"));
+      const querySnapshot = await getDocs(collection(db, "product"));
       querySnapshot.forEach((doc) => {
-        let product = doc.data();
+        var product = doc.data();
         document.getElementById('namaProduct').innerHTML = product.nama;
         document.getElementById('deskripsi').innerHTML = product.deskripsi;
         document.getElementById('kirim').innerHTML = product.pengirim;
-        document.getElementById('harga').innerHTML = product.harga;
+        document.getElementById('harga').innerHTML = product.harga
         // looping bintang
         for (let i = 0; i < product.rating - 1; i++) {
         bintang += '<h6 class="fas fa-star"></h6>';
@@ -57,7 +62,7 @@
         document.getElementById('indicator-gambarproduk2').src = product.gambar[1];
         document.getElementById('indicator-gambarproduk3').src = product.gambar[2];
         document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
-        document.getElementById('abc').href = "https://wa.me/6285793566962?text=saya ingin membeli%20" + product.nama + "%20ini";
+        document.getElementById('abc').href = "https://wa.me/6282119646486?text=saya ingin membeli%20" + product.nama + "%20ini";
       });
       
        const querytoko = await getDocs(collection(db, "toko"));
@@ -129,11 +134,23 @@
                     <h6 class="tempatpegiriman">Pengiriman: <span id="kirim"></span></h6>
                 </div>
                 <!-- class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal" -->
-        <a href="" id="abc"><button type="button" onclick="myFunction()" class="tombolbeli">
-          <!-- href="https://wa.me/6282119646486?text=Saya Tertarik Dengan Produk Yang Anda Jual -->
-          Beli Sekarang
-        </button></a>
-
+<a href="" id="abc"><button type="button" onclick="myFunction()" class="tombolbeli">
+  <!-- href="https://wa.me/6282119646486?text=Saya Tertarik Dengan Produk Yang Anda Jual -->
+  Beli Sekarang
+</button></a>
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="margin-left: 45%;"><i class="fab fa-whatsapp btn btn-success"></i></h5> -->
+        <!-- <a href="" id="abc"><button onclick="myFunction()" type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></a> -->
+      <!-- </div> -->
+      <!-- <div class="modal-body">
+        Apakah anda yakin ingin membeli barang ini!!!!!!!!!!!!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+        <a href="" id="abc" type="button" class="btn btn-primary" >Beli</a> -->
       </div>
     </div>
   </div>
