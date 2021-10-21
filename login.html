@@ -90,10 +90,8 @@
             </form>
             <br />
             <button
-              onkeypress="if(event.key == 'Enter')"
-              role="search"
               id="enterClick"
-              class="btn btn-primary search"
+              class="btn btn-primary"
               style="
                 background: #04396e;
                 color: white;
@@ -104,7 +102,7 @@
                 padding: 10px 20px;
               "
               onclick="return validasi()"
-            id = "go">
+            >
               Login</button
             ><br />
             <br />
@@ -165,42 +163,22 @@
           password: "",
         };
 
-        // document
-        //   .getElementById("password")
-        //   .addEventListener("keyup", function (event) {
-        //     event.preventDefault();
-        //     if (event.keyCode === 13) {
-        //       document.getElementById("enterClick").click();
-        //     }
-        //   });
+        var input = document.getElementById("");
+        if (querySnapshot.size == 1) {
+          querySnapshot.forEach((doc) => {
+            user.username = doc.data().username;
+            user.password = doc.data().password;
 
-        // function validasi() {
-        //   alert("Button code executed.");
-        // }
-        var go = document.getElementById("go");
-        var txt = document.getElementById("txt");
-
-        txt.addEventListener("keypress", function(event) {
-        event.preventDefault();
-        if (event.keyCode == 13)
-        go.click();
+            if (username == user.username && password == user.password) {
+              window.location.href = "beranda.html";
+              return true;
+            } else {
+              alert("Username atau password yang Anda masukan SALAH");
+              return false;
+            }
           });
-
-        // if (querySnapshot.size == 1) {
-          // querySnapshot.forEach((doc) => {
-            // user.username = doc.data().username;
-            // user.password = doc.data().password;
-
-            // if (username == user.username && password == user.password) {
-              // window.location.href = "beranda.html";
-              // return true;
-            // } else {
-              // alert("Username atau password yang Anda masukan SALAH");
-              // return false;
-            // }
-          // });
-        // }
-      // };
+        }
+      };
 
       // window.validasi = async function () {
       //   var username = document.forms["myForm"]["username"].value;
