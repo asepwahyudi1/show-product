@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin</title>
+  <link rel="stylesheet" href="fontawesome/css/all.css" />
+
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@100;200;300;400;500;600;700;800;900&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+    :root {
+      --font1: 'Heebo', sans-serif;
+      --font2: 'Fira Sans Extra Condensed', sans-serif;
+      --font3: 'Roboto', sans-serif
+    }
+
+    body {
+      font-family: var(--font3);
+      background-image: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%)
+    }
+
+    h2 {
+      font-weight: 900
+    }
+
+    .container-fluid {
+      max-width: 1200px
+    }
+
+    .card {
+      background: #fff;
+      box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+      transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+      border: 0;
+      border-radius: 1rem
+    }
+
+    .card-img,
+    .card-img-top {
+      border-top-left-radius: calc(1rem - 1px);
+      border-top-right-radius: calc(1rem - 1px)
+    }
+
+    .card h5 {
+      overflow: hidden;
+      height: 56px;
+      font-weight: 900;
+      font-size: 1rem
+    }
+
+    .card-img-top {
+      width: 100%;
+      max-height: 180px;
+      object-fit: contain;
+      padding: 30px
+    }
+
+    .card h2 {
+      font-size: 1rem
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06)
+    }
+
+    .label-top {
+      position: absolute;
+      background-color: #8bc34a;
+      color: #fff;
+      top: 8px;
+      right: 8px;
+      padding: 5px 10px 5px 10px;
+      font-size: .7rem;
+      font-weight: 600;
+      border-radius: 3px;
+      text-transform: uppercase
+    }
+
+    .top-right {
+      position: absolute;
+      top: 24px;
+      left: 24px;
+      width: 90px;
+      height: 90px;
+      border-radius: 50%;
+      font-size: 1rem;
+      font-weight: 900;
+      background: #ff5722;
+      line-height: 90px;
+      text-align: center;
+      color: white
+    }
+
+    .top-right span {
+      display: inline-block;
+      vertical-align: middle
+    }
+
+    @media (max-width: 768px) {
+      .card-img-top {
+        max-height: 250px
+      }
+    }
+
+    .over-bg {
+      background: rgba(53, 53, 53, 0.85);
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      backdrop-filter: blur(0.0px);
+      -webkit-backdrop-filter: blur(0.0px);
+      border-radius: 10px
+    }
+
+    .btn {
+      font-size: 1rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      padding: 5px 50px 5px 50px
+    }
+
+    .box .btn {
+      font-size: 1.5rem
+    }
+
+    @media (max-width: 1025px) {
+      .btn {
+        padding: 5px 40px 5px 40px
+      }
+    }
+
+    @media (max-width: 250px) {
+      .btn {
+        padding: 5px 30px 5px 30px
+      }
+    }
+
+    .btn-warning {
+      background: none #f7810a;
+      color: #ffffff;
+      fill: #ffffff;
+      border: none;
+      text-decoration: none;
+      outline: 0;
+      box-shadow: -1px 6px 19px rgba(247, 129, 10, 0.25);
+      border-radius: 100px
+    }
+
+    .btn-warning:hover {
+      background: none #ff962b;
+      color: #ffffff;
+      box-shadow: -1px 6px 13px rgba(255, 150, 43, 0.35)
+    }
+
+    .bg-success {
+      font-size: 1rem;
+      background-color: #f7810a !important
+    }
+
+    .bg-danger {
+      font-size: 1rem
+    }
+
+    .price-hp {
+      font-size: 1rem;
+      font-weight: 600;
+      color: darkgray
+    }
+
+    .amz-hp {
+      font-size: .7rem;
+      font-weight: 600;
+      color: darkgray
+    }
+
+    .fa-question-circle:before {
+      color: darkgray
+    }
+
+    .fa-plus:before {
+      color: darkgray
+    }
+
+    .box {
+      border-radius: 1rem;
+      background: #fff;
+      box-shadow: 0 6px 10px rgb(0 0 0 / 8%), 0 0 6px rgb(0 0 0 / 5%);
+      transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12)
+    }
+
+    .box-img {
+      max-width: 400px
+    }
+
+    .thumb-sec {
+      max-width: 300px
+    }
+
+    @media (max-width: 576px) {
+      .box-img {
+        max-width: 200px
+      }
+
+      .thumb-sec {
+        max-width: 200px
+      }
+    }
+
+    .inner-gallery {
+      width: 60px;
+      height: 60px;
+      border: 1px solid #ddd;
+      border-radius: 3px;
+      margin: 1px;
+      display: inline-block;
+      overflow: hidden;
+      -o-object-fit: cover;
+      object-fit: cover
+    }
+
+    @media (max-width: 370px) {
+      .box .btn {
+        padding: 5px 40px 5px 40px;
+        font-size: 1rem
+      }
+    }
+
+    .disclaimer {
+      font-size: .9rem;
+      color: darkgray
+    }
+
+    .related h3 {
+      font-weight: 900
+    }
+
+    footer {
+      background: #212529;
+      height: 80px;
+      color: #fff
+    }
+  </style>
+
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
+    import { getFirestore, collection, getDocs, doc, updateDoc } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+      authDomain: "show-product.firebaseapp.com",
+      projectId: "show-product",
+      storageBucket: "show-product.appspot.com",
+      messagingSenderId: "1097328728197",
+      appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+      measurementId: "G-27V5PMSV0R",
+    };
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+    const db = getFirestore(app);
+
+  </script>
+
+  <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+  <!-- CSS only -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+</head><!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+  integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ" crossorigin="anonymous"></script>
+</head>
+
+<body>
+  <main>
+    <div class="container-fluid bg-trasparent my-4 p-3" style="position: relative;">
+      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" id="tasks-container">
+      </div>
+    </div>
+  </main>
+  </div>
+
+  <!-- FIREBASE -->
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-app.js"></script>
+
+  <!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+  <script src="https://www.gstatic.com/firebasejs/7.15.1/firebase-firestore.js"></script>
+
+  <script>
+    // Your web app's Firebase configuration
+    var firebaseConfig = {
+      // PUT YOUR CREDENTIALS HERE
+      apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+      authDomain: "show-product.firebaseapp.com",
+      projectId: "show-product",
+      storageBucket: "show-product.appspot.com",
+      messagingSenderId: "1097328728197",
+      appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+      measurementId: "G-27V5PMSV0R",
+    };
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+
+    const taskForm = document.getElementById("task-form");
+    const tasksContainer = document.getElementById("tasks-container");
+
+    // let editStatus = false;
+    let id = "";
+
+    /**
+     * Save a New Task in Firestore
+     * @param {string} title the title of the Task
+     * @param {string} description the description of the Task
+     */
+    // const saveTask = (gambar, nama, harga) =>
+    //   db.collection("product").doc().set({
+    //     gambar,
+    //     nama,
+    //     harga,
+    //   });
+
+    const getTasks = () => db.collection("product").get();
+
+    const onGetTasks = (callback) =>
+      db.collection("product").onSnapshot(callback);
+
+    const deleteTask = (id) => db.collection("product").doc(id).delete();
+
+    const getTask = (id) => db.collection("product").doc(id).get();
+
+    // const updateTask = (id, updatedTask) =>
+    //   db.collection("product").doc(id).update(updatedTask);
+
+    window.addEventListener("DOMContentLoaded", async (e) => {
+      onGetTasks((querySnapshot) => {
+        tasksContainer.innerHTML = "";
+
+        querySnapshot.forEach((doc) => {
+          const task = doc.data();
+
+          tasksContainer.innerHTML += `<div class="col-lg-4">
+                <div class="card h-100 shadow-sm"> <img src="${task.gambar[0]}">
+                    <div class="label-top shadow-sm">${task.nama}</div>
+                    <div class="card-body">
+                        <div class="clearfix mb-3"> <span class="float-start price-hp">${task.harga}</span></div>
+                        <a href="file:///C:/Users/SAMUDERA/Documents/show%20product/show-product/index.html?idProduct=${doc.id}" id="edit2" class="btn btn-secondary btn-edit">
+                        pilih
+                            </a>
+                        </div>
+                    </div>
+                    </div>
+                        `;
+        });
+        // const btnsDelete = tasksContainer.querySelectorAll(".btn-delete");
+        // btnsDelete.forEach((btn) =>
+        //   btn.addEventListener("click", async (e) => {
+        // <button class="btn btn-danger btn-delete" data-id="${doc.id}">Pilih</button>
+        //     console.log(e.target.dataset.id);
+        //     try {
+
+        //       // var yakin = confirm("Apakah kamu yakin akan menghapus?");
+
+        //       // if (yakin) {
+        //       //   // await deleteTask(e.target.dataset.id);
+        //       // } else {
+        //       //   // location.href = "produk.html"
+        //       //   return false
+        //       // }
+        //     } catch (error) {
+        //       console.log(error);
+        //     }
+        //   })
+        // );
+      });
+    });
+  </script>
+</body>
+
+</html>
+
+<!-- // <div class="row" style="margin: 1%;">
+//             <div class="col-sm" style="padding: 1%;"><img src="${task.gambar[0]}" width="80%"></div>
+//             <div class="col-sm" style="padding: 1%;"><h3 class="h4">${task.nama}</h3></div>
+//             <div class="col-sm" style="padding: 1%;"><h4>${task.harga}</h4></div>
+//             <div class="col-sm">
+//             <button class="btn btn-danger btn-delete" data-id="${doc.id}">
+//                 Hapus
+//             </button>
+//             </div>
+//   </div> -->

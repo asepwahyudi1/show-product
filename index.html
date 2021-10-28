@@ -8,19 +8,15 @@
   <title>show-product</title>
   <link rel="stylesheet" href="fontawesome/css/all.css">
   <link rel="stylesheet" href="index.css">
-  <script src=>
-      // function WA() {
-        // Document.getElementById('demo').innerHTML = '<a herf="https://wa.me/6281355538777?text=Saya"></a>'
-      // }
-  </script>
 
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
   <script type="module">
     // Import the functions you need from the SDKs you need
     import { initializeApp } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-app.js";
-    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
+    import { getFirestore, doc, getDoc, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-firestore.js";
     import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.0.2/firebase-analytics.js";
     // TODO: Add SDKs for Firebase products that you want to use
     // https://firebase.google.com/docs/web/setup#available-libraries
@@ -30,22 +26,30 @@
     const firebaseConfig = {
       apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
       authDomain: "show-product.firebaseapp.com",
+      databaseURL: "https://show-product-default-rtdb.firebaseio.com",
       projectId: "show-product",
       storageBucket: "show-product.appspot.com",
       messagingSenderId: "1097328728197",
       appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
-      measurementId: "G-27V5PMSV0R",
+      measurementId: "G-27V5PMSV0R"
     };
 
     // Initialize Firebase
     const app = initializeApp(firebaseConfig);
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
+    let id = ""
     let bintang = '<h6 class="fas fa-star"></h6>';
 
-    const querySnapshot = await getDocs(collection(db, "product"));
-    querySnapshot.forEach((doc) => {
-      var product = doc.data();
+    let params = new URLSearchParams(document.location.search.substring(1));
+    let idProduct = params.get("idProduct");
+
+    const docRef = doc(db, "product", idProduct);
+    const docSnap = await getDoc(docRef);
+
+    if (docSnap.exists()) {
+      let product = docSnap.data();
+
       document.getElementById('namaProduct').innerHTML = product.nama;
       document.getElementById('deskripsi').innerHTML = product.deskripsi;
       document.getElementById('kirim').innerHTML = product.pengirim;
@@ -64,6 +68,33 @@
       document.getElementById('indicator-gambarproduk3').src = product.gambar[2];
       document.getElementById('indicator-gambarproduk4').src = product.gambar[3];
       document.getElementById('abc').href = "https://wa.me/6282119646486?text=saya ingin membeli%20" + product.nama + "%20ini";
+    } else {
+      // doc.data() will be undefined in this case
+      console.log("No such document!");
+    }
+
+    const querySnapshot = await getDocs(collection(db, "product",));
+    querySnapshot.forEach((doc) => {
+      var product = doc.data();
+
+      let idProduct = doc.id;
+      let url = window.location.href;
+      url = url.split('=');
+      url = url[0] + "=" + idProduct;
+
+      $("#list-products").append(`
+      <div class="col">
+        <div class="card h-100 shadow-sm"> <img
+          src="${product.gambar[0]}"
+          class="card-img-top" alt="...">
+          <div class ="card-body">
+          <div class ="clearfix mb-3"><h4>${product.nama}</h4></div>
+          <div class ="clearfix mb-3"> <span class ="float-start badge rounded-pill bg-success">Rp.${product.harga}</span></div>
+          <div class ="d-grid gap-2 my-4"> <a href="${url}" class ="btn btn-warning">Check offer</a> </div>
+          </div>
+        </div>
+      </div>
+      `)
     });
 
     const querytoko = await getDocs(collection(db, "toko"));
@@ -136,7 +167,7 @@
       </div>
       <div>
         <div class="backgroundhargabarang">
-          <h3 class="HARGABARANG" id="harga"></h3>
+          <h3 class="HARGABARANG"><b>Rp.</b><b id="harga"></b></h3>
         </div>
         <div>
           <h6 class="tempatpegiriman">Pengiriman: <span id="kirim"></span></h6>
@@ -166,55 +197,13 @@
     </div>
   </div>
   </div>
-  <h5 style="padding-left: 9%;">PRODUK LAINNYA</h5>
-  <div class="banner-sub-content" style="padding-bottom: 1%;">
-    <div class="banner-sub-content" style="margin-left: 9%; margin-right: 5.5%;">
-      <div class="row" style="text-align: center;">
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
-        <button class="card" style="width: 16%">
-          <img class="card-img-top" src="img/tebing.jpg" style="margin: 0.5%;" alt="Card image cap">
-          <div class="card-body">
-            <h5 class="card-title">nama produk</h5>
-            <p class="hargabaranglist">harga</p>
-          </div>
-        </button>
+  <main>
+    <div class="container-fluid bg-trasparent my-4 p-3"
+      style="position: relative; padding-top: 3%; padding-left: 3%; padding-right: 3%; margin-bottom: 1%;">
+      <div class="row row-cols-1 row-cols-xs-2 row-cols-sm-2 row-cols-lg-4 g-3" id="list-products">
       </div>
     </div>
-  </div>
+  </main>
 </body>
 
 </html>

@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin</title>
+    <link rel="stylesheet" href="admin2.css" />
+    <link rel="stylesheet" href="fontawesome/css/all.css" />
+    <script src="ckeditor/ckeditor.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous" />
+</head><!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.all.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
+    crossorigin="anonymous"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
+</head>
+
+<body id="body-pd">
+    <header class="header" id="header">
+        <div class="header__toggle">
+            <i class="bx bx-menu" id="header-toggle"></i>
+        </div>
+        <h4 style="margin: auto;">Pengaturan Product</h4>
+    </header>
+
+    <div class="l-navbar" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav__logo text-decoration-none">
+                    <i class="bx bx-layer nav__logo-icon"></i>
+                    <span class="nav__logo-name">Admin</span>
+                </a>
+
+                <div class="nav__list">
+                    <a href="beranda.html" class="nav__link text-decoration-none">
+                        <i class="fa fa-home nav__logo-icon"></i>
+                        <span class="nav__name">Beranda</span>
+                    </a>
+
+                    <a href="product.html" class="nav__link active text-decoration-none">
+                        <i class="fa fa-cube nav__logo-icon"></i>
+                        <span class="nav__name">Product</span>
+                    </a>
+
+                    <a href="toko.html" class="nav__link text-decoration-none">
+                        <i class="fa fa-shopping-basket nav__logo-icon"></i>
+                        <span class="nav__name">Toko</span>
+                    </a>
+                    <a href="index.html" class="nav__link text-decoration-none">
+                        <i class="bx bx-log-out nav__icon"></i>
+                        <span class="nav__name">Keluar</span>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="container">
+        <form class="form-horizontal">
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="nama">Nama Product:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="nama" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="rating">Rating:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="rating" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="harga">Harga:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="harga" />
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-sm-2" for="alamat">Alamat Pengiriman:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="pengirim">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="exampleFormControlTextarea1">Deskripsi:</label>
+                <textarea class="form-control" id="deskripsi" rows="3"></textarea>
+
+            </div>
+        </form>
+        <label for="basic-url">Gambar:</label>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <div class="mb-3">
+                    <input class="form-control" type="file" id="file" multiple>
+                    <img id="myImg" style="height: 100px; width: 100px; border: 1px solid black;">
+                </div>
+                <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+            </div>
+
+        </div>
+        <!-- <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile2">
+                      <img id="myImg2" style="height: 100px; width: 100px; border: 1px solid black;">
+                    </div>
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+        <!-- </div>
+                    
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile3">
+                      <img id="myImg3" style="height: 100px; width: 100px; border: 1px solid black;">
+                    </div>
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+        <!-- </div>
+                    
+                </div>
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="mb-3">
+                      <input class="form-control" type="file"  id="formFile4">
+                      <img id="myImg4" style="height: 100px; width: 100px; border: 1px solid black;">
+                    </div> 
+                    <!-- <span class="input-group-text" id="basic-addon3">URL</span> -->
+        <!-- </div> -->
+
+    </div>
+    <a href="admin2.html" style="padding-left: 5%;"><button type="submit" class="btn btn-danger">Kembali</button></a>
+    <button type="button" class="btn btn-primary" onclick="updateProduct()">Simpan</button>
+    </div>
+
+    </form>
+    </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.1.1/firebase-firestore.js"></script>
+
+    <script type="module">
+        const firebaseConfig = {
+            apiKey: "AIzaSyDDL0HQSMj0lhPUmuvwtHs3kXasSfVfBe0",
+            authDomain: "show-product.firebaseapp.com",
+            projectId: "show-product",
+            storageBucket: "show-product.appspot.com",
+            messagingSenderId: "1097328728197",
+            appId: "1:1097328728197:web:e47bb61c78597e986f31ec",
+            measurementId: "G-27V5PMSV0R"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        let firestore = firebase.firestore();
+        let storage = firebase.storage();
+
+        let bintang = '<h6 class="fas fa-star"></h6>';
+        let params = new URLSearchParams(document.location.search.substring(1));
+        let idProduct = params.get("idProduct");
+
+        firestore.collection("product").doc(idProduct).get().then((doc) => {
+            let product = doc.data();
+            document.getElementById('nama').value = product.nama;
+            document.getElementById('pengirim').value = product.pengirim;
+            document.getElementById('deskripsi').value = product.deskripsi;
+            document.getElementById('harga').value = product.harga;
+            CKEDITOR.replace('deskripsi');
+            // looping bintang
+            for (let i = 0; i < product.rating - 1; i++) {
+                bintang += '<h6 class="fas fa-star"></h6>';
+            }
+            document.getElementById('rating').value = product.rating;
+        })
+
+
+        window.updateProduct = function () {
+            const productRef = firestore.collection('product').doc(idProduct);
+            productRef.update({
+                nama: document.getElementById("nama").value,
+                rating: document.getElementById("rating").value,
+                harga: document.getElementById("harga").value,
+                pengirim: document.getElementById("pengirim").value,
+                deskripsi: CKEDITOR.instances.deskripsi.getData()
+            }).then(res => {
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            });
+
+
+            document.getElementById("file").addEventListener("change", async (event) => {
+
+                let images = [];
+                const files = event.target.files;
+                for (let i = 0; i < files.length; i++) {
+                    let object_promise = new Promise(async (resolve) => {
+                        let file = files[i];
+
+                        const storageRef = storage.ref("Gambar/" + file.name);
+                        await storageRef.put(file).then(snapshot => {
+                            snapshot.ref.getDownloadURL().then(url => {
+                                resolve(url);
+                            }).catch(err => {
+                                console.log('error', err);
+                                resolve('error');
+                            })
+                        }).catch(err => {
+                            console.log('error ', err);
+                            resolve('error');
+                        });
+                    });
+
+                    images.push(object_promise);
+                }
+
+                Promise.all(images).then(image => {
+                    image = image.filter(item => item != 'error');
+
+                    firestore.collection('product').doc(idProduct).update({
+                        gambar: image,
+                    });
+                });
+
+            });
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>

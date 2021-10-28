@@ -37,6 +37,13 @@
     const analytics = getAnalytics(app);
     const db = getFirestore(app);
 
+    // const querySnapshot = await getDocs(collection(db, "product"));
+    // querySnapshot.forEach((doc) => {
+    //   var product = doc.data();
+    //   // document.getElementById('gambarproduk').src = product.gambar[0];
+    //   document.getElementById('namaProduk').innerHTML = product.nama;
+    //   document.getElementById('hargaProduk').innerHTML = product.harga;
+    // });
   </script>
 
   <link href="https://cdn.jsdelivr.net/npm/boxicons@2.0.5/css/boxicons.min.css" rel="stylesheet" />
@@ -98,7 +105,7 @@
     <div class="col-sm"></div>
     <div class="col-sm"></div>
     <div class="col-sm">
-      <button class="btn btn-primary" onclick="location.href='gefdhgf.html'">
+      <button class="btn btn-primary">
         <h5>Tambahkan</h5>
       </button>
     </div>
@@ -108,23 +115,22 @@
     <!-- <div class="card">
       <div class="card-body">
         <h1 class="h4">Add Task</h1>
-        
+
         <form id="task-form">
           <div class="form-group">
-            <input type="text" id="task-nama" class="form-control" class="Task nama" placeholder="Task nama"
-            autofocus>
+            <input type="text" id="task-nama" class="form-control" class="Task nama" placeholder="Task nama" autofocus>
           </div>
           <div class="form-group">
             <textarea id="task-harga" rows="3" class="form-control" placeholder="Task harga"></textarea>
           </div>
-          
+
           <button class="btn btn-primary" id="btn-task-form">
             Save
-              </button>
-              
-            </form>
-          </div>
-        </div> -->
+          </button>
+
+        </form>
+      </div>
+    </div> -->
     <!-- Tasks List -->
     <div class="col-md-12">
       <div class="row" style="margin: 1%">
@@ -172,7 +178,6 @@
 
     const taskForm = document.getElementById("task-form");
     const tasksContainer = document.getElementById("tasks-container");
-
     let editStatus = false;
     let id = "";
 
@@ -197,8 +202,8 @@
 
     const getTask = (id) => db.collection("product").doc(id).get();
 
-    // const updateTask = (id, updatedTask) =>
-    //   db.collection("product").doc(id).update(updatedTask);
+    const updateTask = (id, updatedTask) =>
+      db.collection("product").doc(id).update(updatedTask);
 
     window.addEventListener("DOMContentLoaded", async (e) => {
       onGetTasks((querySnapshot) => {
@@ -215,96 +220,43 @@
             <button class="btn btn-danger btn-delete" data-id="${doc.id}">
                 Hapus
             </button>
-            <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
+            <a href="file:///C:/Users/SAMUDERA/Documents/show%20product/show-product/coba edit.html?idProduct=${doc.id}" id="edit2" class="btn btn-secondary btn-edit">
                 Edit
-            </button>
+            </a>
             </div>
   </div>`;
         });
 
-        ////////////////////hasil akhir jangan di hapus ////////////////////////////////////////////
-
-        //   tasksContainer.innerHTML += `<div class="card card-body mt-2 border-primary">
-        //     <h3 class="6">${task.title}</h3>
-        //     <p>${task.description}</p>
-        //     <div>
-        //       <button class="btn btn-primary btn-delete" data-id="${doc.id}">
-        //         Hapus
-        //       </button>
-        //       <button class="btn btn-secondary btn-edit" data-id="${doc.id}">
-        //         Edit
-        //       </button>
-        //     </div>
-        //   </div>`;
-        // });
         const btnsDelete = tasksContainer.querySelectorAll(".btn-delete");
         btnsDelete.forEach((btn) =>
           btn.addEventListener("click", async (e) => {
             console.log(e.target.dataset.id);
             try {
-
-              var yakin = confirm("Apakah kamu yakin akan menghapus?");
-
-              if (yakin) {
-                await deleteTask(e.target.dataset.id);
-              } else {
-                // location.href = "produk.html"
-                return false
-              }
+              Swal.fire({
+                title: 'DELETE?',
+                text: "Yakin?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Hapus'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  deleteTask(e.target.dataset.id);
+                  Swal.fire(
+                    'DELETE!',
+                    'Berhasil di Hapus',
+                    'success'
+                  )
+                }
+              })
             } catch (error) {
               console.log(error);
             }
           })
         );
-
-        const btnsEdit = tasksContainer.querySelectorAll(".btn-edit");
-        btnsEdit.forEach((btn) => {
-          btn.addEventListener("click", async (e) => {
-            try {
-              const doc = await getTask(e.target.dataset.id);
-              const task = doc.data();
-              taskForm["task-gambar"].value = task.gambar;
-              taskForm["task-nama"].value = task.nama;
-              taskForm["task-harga"].value = task.harga;
-
-              editStatus = true;
-              id = doc.id;
-              taskForm["btn-task-form"].innerText = "Update";
-            } catch (error) {
-              console.log(error);
-            }
-          });
-        });
       });
     });
-
-    // taskForm.addEventListener("submit", async (e) => {
-    //   e.preventDefault();
-    //   const gambar = taskForm["task-gambar"];
-    //   const nama = taskForm["task-nama"];
-    //   const harga = taskForm["task-harga"];
-
-    //   try {
-    //     if (!editStatus) {
-    //       await saveTask(gambar.value, nama.value, harga.value);
-    //     } else {
-    //       await updateTask(id, {
-    //         gambar: gambar.value,
-    //         nama: nama.value,
-    //         harga: harga.value,
-    //       });
-
-    //       editStatus = false;
-    //       id = "";
-    //       taskForm["btn-task-form"].innerText = "Save";
-    //     }
-
-    //     taskForm.reset();
-    //     nama.focus();
-    //   } catch (error) {
-    //     console.log(error);
-    //   }
-    // });
   </script>
   <script src="main.js"></script>
 </body>
