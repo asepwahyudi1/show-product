@@ -39,12 +39,11 @@
               <label for="" id="UpProgress"></label><br>
               Nama <input type="text" name="" id="namebox"><br>
               <br>
-            <input class="form-control" type="file"  id="select"><br>
+            <input class="form-control" type="file"  id="select"><button id="upload">Upload Image</button><br>
             <img id="myImg">
           </div>
          
-           <button id="upload">Upload Image</button>
-          <button id="ambil">Ambil Image</button> 
+           
         </div>
         
       </form><br>
@@ -94,7 +93,7 @@
             //err//
           function(error){
               alert('error saving image')
-          },
+          }, 
           //submit//
           function(){
               uploadTask.snapshot.ref.getDownloadURL().then(function(url){
